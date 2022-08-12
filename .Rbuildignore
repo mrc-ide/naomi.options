@@ -1,0 +1,16 @@
+^hintr\.Rproj$
+^\.Rproj\.user$
+^LICENSE\.md$
+^\.travis\.yml$
+^\.hadolint\.yml$
+^codecov\.yml$
+^example$
+^docker$
+^README\.md\.in$
+^README\.yml$
+^scripts$
+^id_rsa\.enc$
+^id_rsa$
+^tests/testthat/testdata/sensitive$
+^buildkite$
+^naomi$

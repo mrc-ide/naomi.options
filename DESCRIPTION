@@ -1,0 +1,21 @@
+Package: naomi.options
+Title: Contains model and calibration options and helper functions for Naomi
+Version: 0.0.1
+Authors@R: 
+    person(given = "Robert", 
+           family = "Ashton", 
+           email = "r.ashton@imperial.ac.uk", 
+           role = c("aut", "cre"))
+Description: Contains model and calibration option JSON and default values and helper functions for Naomi.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.2
+Additional_repositories: https://mrc-ide.r-universe.dev
+Imports:
+    glue,
+    jsonlite,
+    traduire (>= 0.0.5),
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
