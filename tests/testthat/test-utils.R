@@ -24,16 +24,6 @@ test_that("can recursively convert to scalar", {
                list(x = scalar(1)))
 })
 
-test_that("can check valid numeric", {
-  expect_true(valid_numeric(2))
-  expect_true(valid_numeric(3.14))
-  expect_true(valid_numeric("2"))
-  expect_true(valid_numeric("3.14"))
-  expect_false(valid_numeric(""))
-  expect_false(valid_numeric("two"))
-  expect_false(valid_numeric(NULL))
-})
-
 test_that("can build JSON from template", {
   json <- build_json("test \"<+param1+>\"",
                      list(param1 = scalar("test string")))

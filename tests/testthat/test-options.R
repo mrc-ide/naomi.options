@@ -71,17 +71,39 @@ test_that("fallback to overrides if defaults are invalid", {
     ),
     value = "test"
   )
-  json <- get_controls_json("model", "MWI", overrides)
-  out <- jsonlite::fromJSON(json, simplifyVector = FALSE)
+  overrides$number_type <- list(
+    value = 10
+  )
+
+  controls <- get_model_controls()
+  controls$number_type <- list(
+    name = "number_type",
+    type = "number",
+    helpText = "help123",
+    required = TRUE
+  )
+
+  mock_get_model_controls <- mockery::mock(controls)
+  mock_build_json <- mockery::mock(TRUE)
+
+  with_mock(
+    "naomi.options:::build_json" = mock_build_json,
+    "naomi.options:::get_model_controls" = mock_get_model_controls, {
+      json <- get_controls_json("model", "MWI", overrides)
+    })
+
+  mockery::expect_called(mock_build_json, 1)
+  mockery::expect_called(mock_get_model_controls, 1)
+  out <- mockery::mock_args(mock_build_json)[[1]][[2]]
 
   ## select value comes from overrides
-  control_1 <- out$controlSections[[1]]$controlGroups[[1]]$controls[[1]]
-  expect_equal(control_1$value, "1")
+  expect_equal(out$area_level$value, scalar("1"))
 
   ## multiselect value comes from overrides
-  control_3 <- out$controlSections[[1]]$controlGroups[[3]]$controls[[1]]
-  expect_equal(control_3$name, "survey_prevalence")
-  expect_equal(control_3$value, "test")
+  expect_equal(out$survey_prevalence$value, scalar("test"))
+
+  ## number value comes from overrides
+  expect_equal(out$number_type$value, scalar(10))
 })
 
 test_that("fallback to no value if overrides and defaults are invalid", {
@@ -121,7 +143,6 @@ test_that("fallback to no value if overrides and defaults are invalid", {
     "naomi.options:::get_model_controls" = mock_get_model_controls, {
       json <- get_controls_json("model", "MWI", overrides)
     })
-
 
   mockery::expect_called(mock_build_json, 1)
   mockery::expect_called(mock_get_model_controls, 1)

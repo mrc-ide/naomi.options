@@ -29,15 +29,7 @@ recursive_scalar <- function(x) {
   })
 }
 
-valid_numeric <- function(x) {
-  !is.null(x) && suppressWarnings(!is.na(as.numeric(x)))
-}
-
 #' Build JSON from template and a set of params
-#'
-#' This wraps params in quotes and collapses any arrays into a single comma
-#' separated list. Therefore only substitutes in string types for the time
-#' being.
 #'
 #' @param options_template Template JSON of model run options
 #' @param params List of named key value pairs for substituting from template.
