@@ -117,8 +117,8 @@ test_that("fallback to no value if overrides and defaults are invalid", {
   mock_build_json <- mockery::mock(TRUE)
 
   with_mock(
-    "build_json" = mock_build_json,
-    "get_model_controls" = mock_get_model_controls, {
+    "naomi.options:::build_json" = mock_build_json,
+    "naomi.options:::get_model_controls" = mock_get_model_controls, {
       json <- get_controls_json("model", "MWI", overrides)
     })
 
