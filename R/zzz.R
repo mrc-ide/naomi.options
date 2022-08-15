@@ -16,3 +16,7 @@ init_traduire <- function() {
                                 fallback = "en",
                                 languages = languages)
 }
+
+translator_unregister <- function() {
+  traduire::translator_unregister()
+}

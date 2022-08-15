@@ -1,0 +1,10 @@
+test_that("translation initialisation calls traduire_register", {
+  expect_true("package:naomi.options" %in% traduire::translator_list())
+  expect_error(naomi_options_translator(), NA)
+  translator_unregister()
+  expect_false("package:naomi.options" %in% traduire::translator_list())
+  expect_error(naomi_options_translator())
+  init_traduire()
+  expect_error(naomi_options_translator(), NA)
+  expect_true("package:naomi.options" %in% traduire::translator_list())
+})

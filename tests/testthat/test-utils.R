@@ -74,3 +74,10 @@ test_that("JSON build fails if params are missing", {
                "Failed to construct model options from template and params:
 object 'param' not found")
 })
+
+test_that("system file returns useful message when file cannot be located ", {
+  args <- list("testdata", "missing_file.txt")
+  expect_error(system_file("testdata", "missing_file.txt"),
+               "Failed to locate file from args
+testdata missing_file.txt")
+})
