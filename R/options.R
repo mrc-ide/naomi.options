@@ -145,4 +145,3 @@ set_number_value <- function(control, default, override) {
   }
   value
 }
-
