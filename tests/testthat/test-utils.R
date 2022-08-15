@@ -1,3 +1,11 @@
+test_that("can tag item as scalar", {
+  x <- scalar("test")
+  expect_s3_class(x, "scalar")
+
+  y <- scalar(x)
+  expect_equal(y, x)
+})
+
 test_that("can recursively convert to scalar", {
   expect_equal(recursive_scalar(2), list(scalar(2)))
   expect_equal(recursive_scalar(c(1, 2)), list(scalar(1), scalar(2)))
