@@ -43,8 +43,8 @@ test_that("can build JSON from template", {
   expect_equal(json,
                '{"options": ["MWI","MWI_1_1","MWI_1_2"], "test": "test_value"}')
 
-  json <- build_json(paste0('{"options": \"<+options+>\", "test": ",
-                            "\"<+test+>\", "text": "Age < 5"}'),
+  json <- build_json(paste0('{"options": \"<+options+>\", "test": ',
+                            '\"<+test+>\", "text": "Age < 5"}'),
                      list(options = list(
                        list(id = scalar("MWI"),
                             label = scalar("Malawi")),
@@ -57,7 +57,7 @@ test_that("can build JSON from template", {
                paste0('{"options": [{"id":"MWI","label":"Malawi"},',
                       '{"id":"MWI_1_1","label":"Northern"},',
                       '{"id":"MWI_1_2","label":"Central"}],',
-                      'test": "test_value", "text": "Age < 5"}'))
+                      ' "test": "test_value", "text": "Age < 5"}'))
 
   ## Additional params are ignored
   json <- build_json("test \"<+param+>\"",
