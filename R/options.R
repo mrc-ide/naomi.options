@@ -110,7 +110,7 @@ set_select_value <- function(control, default, override) {
   } else if (is_valid(override$value)) {
     value <- override$value
   } else {
-    value <- control$value
+    value <- NULL
   }
   value
 }
@@ -129,7 +129,7 @@ set_multiselect_value <- function(control, default, override) {
   } else if (is_valid(override$value)) {
     value <- override$value
   } else {
-    value <- control$value
+    value <- NULL
   }
   value
 }
@@ -141,7 +141,7 @@ set_number_value <- function(control, default, override) {
   } else if (is_valid(override$value)) {
     value <- override$value
   } else {
-    value <- control$value
+    value <- NULL
   }
   value
 }

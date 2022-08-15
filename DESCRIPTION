@@ -19,7 +19,8 @@ Imports:
     jsonlite,
     traduire (>= 0.0.5),
 Suggests: 
-    testthat (>= 3.0.0)
+    testthat (>= 3.0.0),
+    mockery
 Remotes:
     reside-ic/traduire
 Config/testthat/edition: 3
