@@ -1,0 +1,44 @@
+{
+  "controlSections": [
+    {
+      "label": "t_(OPTIONS_CALIBRATION_LABEL)",
+      "description": "t_(OPTIONS_CALIBRATION_DESCRIPTION)",
+      "controlGroups": [
+        {
+          "label": "t_(OPTIONS_CALIBRATION_ADJUST_TO_SPECTRUM_PLHIV_LABEL)",
+          "controls": [
+            "<+spectrum_plhiv_calibration_level+>",
+            "<+spectrum_plhiv_calibration_strat+>"
+          ]
+        },
+        {
+          "label": "t_(OPTIONS_CALIBRATION_ADJUST_TO_SPECTRUM_ART_LABEL)",
+          "controls": [
+            "<+spectrum_artnum_calibration_level+>",
+            "<+spectrum_artnum_calibration_strat+>"
+          ]
+        },
+        {
+          "label": "t_(OPTIONS_CALIBRATION_ADJUST_TO_SPECTRUM_AWARE_LABEL)",
+          "controls": [
+            "<+spectrum_aware_calibration_level+>",
+            "<+spectrum_aware_calibration_strat+>"
+          ]
+        },
+        {
+          "label": "t_(OPTIONS_CALIBRATION_ADJUST_TO_SPECTRUM_INFECTIONS_LABEL)",
+          "controls": [
+            "<+spectrum_infections_calibration_level+>",
+            "<+spectrum_infections_calibration_strat+>"
+          ]
+        },
+        {
+          "label": "t_(OPTIONS_CALIBRATE_METHOD_LABEL)",
+          "controls": [
+            "<+calibrate_method+>"
+          ]
+        }
+      ]
+    }
+  ]
+}

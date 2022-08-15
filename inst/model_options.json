@@ -1,0 +1,40 @@
+{
+  "controlSections": [
+    {
+      "label": "t_(OPTIONS_SURVEY_LABEL)",
+      "description": "t_(OPTIONS_SURVEY_DESCRIPTION)",
+      "controlGroups": [
+        {
+          "label": "t_(OPTIONS_GENERAL_AREA_LEVEL_LABEL)",
+          "controls": [
+            "<+area_level+>"
+          ]
+        },
+        {
+          "label": "t_(OPTIONS_QUARTER1_LABEL)",
+          "controls": [
+            "<+calendar_quarter_t1+>"
+          ]
+        },
+        {
+          "label": "t_(OPTIONS_SURVEY_PREVALENCE_LABEL)",
+          "controls": [
+            "<+survey_prevalence+>"
+          ]
+        },
+        {
+          "label": "t_(OPTIONS_SURVEY_ART_COVERAGE_LABEL)",
+          "controls": [
+            "<+survey_art_coverage+>"
+          ]
+        },
+        {
+          "label": "t_(OPTIONS_ADVANCED_MAX_ITERATIONS_LABEL)",
+          "controls": [
+            "<+max_iterations+>"
+          ]
+        }
+      ]
+    }
+  ]
+}
