@@ -18,4 +18,6 @@ Imports:
     traduire (>= 0.0.5),
 Suggests: 
     testthat (>= 3.0.0)
+Remotes:
+    reside-ic/traduire
 Config/testthat/edition: 3
