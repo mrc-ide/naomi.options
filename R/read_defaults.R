@@ -14,7 +14,7 @@ read_hardcoded_defaults <- function(iso3, controls) {
 convert_types <- function(data, controls) {
   for (control_id in names(data)) {
     convert_type <- switch(controls[[control_id]]$type,
-                   "select" = as_character,
+                   "select" = as_select,
                    "multiselect" = as_multiselect,
                    "number" = as.numeric)
     data[[control_id]] <- convert_type(data[[control_id]])
@@ -22,7 +22,7 @@ convert_types <- function(data, controls) {
   data
 }
 
-as_character <- function(value) {
+as_select <- function(value) {
   if (is.na(value)) {
     return("")
   }

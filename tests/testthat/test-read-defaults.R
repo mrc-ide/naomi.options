@@ -31,3 +31,20 @@ test_that("read_hardcoded_defaults sets NA columns to empty string", {
 
   expect_equal(defaults$survey_art_coverage, "")
 })
+
+test_that("as_select converts as expected", {
+  expect_equal(as_select(2), "2")
+  expect_equal(as_select(NA), "")
+  expect_equal(as_select("test"), "test")
+  expect_equal(as_select(""), "")
+})
+
+test_that("as_multiselect works as expected", {
+  expect_equal(as_multiselect(2), "2")
+  expect_equal(as_multiselect(NA), "")
+  expect_equal(as_multiselect("test"), "test")
+  expect_equal(as_multiselect(""), "")
+  expect_equal(as_multiselect("test;test2"), c("test", "test2"))
+  expect_equal(as_multiselect("test; test2"), c("test", "test2"))
+  expect_equal(as_multiselect("test;     test2"), c("test", "test2"))
+})
