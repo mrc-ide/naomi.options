@@ -15,8 +15,6 @@ build_json(options_template, params)
 JSON built from template and params.
 }
 \description{
-This wraps params in quotes and collapses any arrays into a single comma
-separated list. Therefore only substitutes in string types for the time
-being.
+Build JSON from template and a set of params
 }
 \keyword{internal}
