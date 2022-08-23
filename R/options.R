@@ -124,7 +124,7 @@ set_multiselect_value <- function(control, default, fallback) {
   }
   is_valid <- function(x) {
     !is.null(x) && (
-      isTRUE(x == "") || all(vapply(x, is_single_valid, logical(1))))
+      !any(nzchar(x)) || all(vapply(x, is_single_valid, logical(1))))
   }
   if (is_valid(default)) {
     value <- default
