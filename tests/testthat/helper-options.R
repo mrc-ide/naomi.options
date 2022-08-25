@@ -1,3 +1,32 @@
+build_test_options <- function(iso3, type, additional_values) {
+  if (type == "model") {
+    controls <- get_model_controls()
+  } else {
+    controls <- get_calibration_controls()
+  }
+  default_values <- read_hardcoded_defaults(iso3, controls)
+  options <- lapply(names(default_values), function(name) {
+    val <- default_values[[name]]
+    opts <- list()
+    if (nzchar(val)) {
+      opts <- c(opts, list(list(
+        id = default_values[[name]],
+        label = default_values[[name]]
+      )))
+    }
+    additional_value <- additional_values[[name]]
+    if (!is.null(additional_value)) {
+      opts <- c(opts, list(list(
+        id = additional_value,
+        label = additional_value
+      )))
+    }
+    opts
+  })
+  names(options) <- names(default_values)
+  options
+}
+
 mwi_options <- list(
   area_level = list(
     list(

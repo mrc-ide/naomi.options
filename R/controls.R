@@ -1,12 +1,80 @@
+get_calibration_options <- function() {
+  list(
+    list(
+      id = "none",
+      label = t_("OPTIONS_CALIBRATION_ADJUST_TO_SPECTRUM_NONE")
+    ),
+    list(
+      id = "national",
+      label = t_("OPTIONS_CALIBRATION_ADJUST_TO_SPECTRUM_NATIONAL")
+    ),
+    list(
+      id = "subnational",
+      label = t_("OPTIONS_CALIBRATION_ADJUST_TO_SPECTRUM_SUBNATIONAL")
+    )
+  )
+}
+
 get_model_controls <- function() {
   yes_no_options <- list(
     list(
       id = "true",
-      label = t("OPTIONS_YES_LABEL")
+      label = t_("OPTIONS_YES_LABEL")
     ),
     list(
       id = "false",
-      label = t("OPTIONS_NO_LABEL")
+      label = t_("OPTIONS_NO_LABEL")
+    )
+  )
+
+  month_options <- list(
+    list(
+      id = "12",
+      label = t_("OPTIONS_12_MONTHS")
+    ),
+    list(
+      id = "11",
+      label = t_("OPTIONS_11_MONTHS")
+    ),
+    list(
+      id = "10",
+      label = t_("OPTIONS_10_MONTHS")
+    ),
+    list(
+      id = "9",
+      label = t_("OPTIONS_9_MONTHS")
+    ),
+    list(
+      id = "8",
+      label = t_("OPTIONS_8_MONTHS")
+    ),
+    list(
+      id = "7",
+      label = t_("OPTIONS_7_MONTHS")
+    ),
+    list(
+      id = "6",
+      label = t_("OPTIONS_6_MONTHS")
+    ),
+    list(
+      id = "5",
+      label = t_("OPTIONS_5_MONTHS")
+    ),
+    list(
+      id = "4",
+      label = t_("OPTIONS_4_MONTHS")
+    ),
+    list(
+      id = "3",
+      label = t_("OPTIONS_3_MONTHS")
+    ),
+    list(
+      id = "2",
+      label = t_("OPTIONS_2_MONTHS")
+    ),
+    list(
+      id = "1",
+      label = t_("OPTIONS_1_MONTHS")
     )
   )
 
@@ -61,7 +129,7 @@ get_model_controls <- function() {
         ),
         list(
           id = "CY2021Q2",
-          label = paste(t_("MONTH_JUN"), "2021")
+          label = paste(t_("MONTH_JUNE"), "2021")
         ),
         list(
           id = "CY2021Q3",
@@ -123,30 +191,215 @@ get_model_controls <- function() {
       required = TRUE,
       options = yes_no_options
     ),
+    include_art_t2 = list(
+      name = "include_art_t2",
+      label = t_("OPTIONS_T2_LABEL"),
+      type = "select",
+      help_text = t_("OPTIONS_T2_HELP"),
+      required = TRUE,
+      options = yes_no_options
+    ),
+    artattend = list(
+      name = "artattend",
+      type = "select",
+      help_text = t_("OPTIONS_ART_NEIGHBOURING_DISTRICT_HELP"),
+      required = TRUE,
+      options = yes_no_options,
+      value = "true"
+    ),
+    artattend_t2 = list(
+      name = "artattend_t2",
+      type = "select",
+      help_text = t_("OPTIONS_ART_TIME_VARYING_ART_ATTEND_HELP"),
+      required = TRUE,
+      options = yes_no_options,
+      value = "true"
+    ),
+    anc_clients_year2 = list(
+      name = "anc_clients_year2",
+      label = t_("OPTIONS_T2_LABEL"),
+      type = "select",
+      help_text = t_("OPTIONS_T2_HELP"),
+      required = FALSE
+    ),
+    anc_clients_year2_num_months = list(
+      name = "anc_clients_year2_num_months",
+      label = t_("OPTIONS_T2_LABEL"),
+      type = "select",
+      help_text = t_("OPTIONS_ANC_MONTHS_HELP"),
+      required = TRUE,
+      options = month_options,
+      value = "12"
+    ),
+    anc_prevalence_year1 = list(
+      name = "anc_prevalence_year1",
+      label = t_("OPTIONS_T1_LABEL"),
+      type = "select",
+      help_text = t_("OPTIONS_T1_HELP"),
+      required = FALSE
+    ),
+    anc_prevalence_year2 = list(
+      name = "anc_prevalence_year2",
+      label = t_("OPTIONS_T2_LABEL"),
+      type = "select",
+      help_text = t_("OPTIONS_T2_HELP"),
+      required = FALSE
+    ),
+    anc_art_coverage_year1 = list(
+      name = "anc_art_coverage_year1",
+      label = t_("OPTIONS_T1_LABEL"),
+      type = "select",
+      help_text = t_("OPTIONS_T1_HELP"),
+      required = FALSE
+    ),
+    anc_art_coverage_year2 = list(
+      name = "anc_art_coverage_year2",
+      label = t_("OPTIONS_T2_LABEL"),
+      type = "select",
+      help_text = t_("OPTIONS_T2_HELP"),
+      required = FALSE
+    ),
+    spectrum_population_calibration = list(
+      name = "spectrum_population_calibration",
+      type = "select",
+      help_text = t_("OPTIONS_CALIBRATION_ADJUST_TO_SPECTRUM_POPULATION_HELP"),
+      required = TRUE,
+      options = get_calibration_options(),
+      value = "subnational"
+    ),
+    output_aware_plhiv = list(
+      name = "output_aware_plhiv",
+      type = "select",
+      help_text = t_("OPTIONS_ADVANCED_OUTPUT_AWARE_HELP"),
+      required = TRUE,
+      options = yes_no_options,
+      value = TRUE
+    ),
     max_iterations = list(
       name = "max_iteration",
       type = "number",
       helpText = t_("OPTIONS_ADVANCED_MAX_ITERATIONS_HELP"),
-      required = TRUE
+      required = TRUE,
+      value = 250
+    ),
+    no_of_samples = list(
+      name = "no_of_samples",
+      type = "number",
+      helpText = t_("OPTIONS_ADVANCED_NO_OF_SIMULATIONS_HELP"),
+      required = TRUE,
+      value = 1000
+    ),
+    rng_seed = list(
+      name = "rng_seed",
+      type = "number",
+      helpText = t_("OPTIONS_ADVANCED_SIMULATION_SEED_HELP"),
+      required = FALSE,
+      value = 28
+    ),
+    artattend_log_gamma_offset = list(
+      name = "artattend_log_gamma_offset",
+      type = "number",
+      helpText = t_("OPTIONS_ADVANCED_LOGIT_HELP"),
+      required = TRUE,
+      value = -4
+    ),
+    rho_paed_x_term = list(
+      name = "rho_paed_x_term",
+      type = "select",
+      required = TRUE,
+      options = yes_no_options,
+      value = "false"
+    ),
+    rho_paed_15to49f_ratio = list(
+      name = "rho_paed_15to49f_ratio",
+      type = "select",
+      required = TRUE,
+      options = yes_no_options,
+      value = "true"
+    ),
+    alpha_xst_term = list(
+      name = "alpha_xst_term",
+      type = "select",
+      required = TRUE,
+      options = yes_no_options,
+      value = "false"
+    ),
+    adjust_area_growth = list(
+      name = "adjust_area_growth",
+      type = "select",
+      helpText = t_("OPTIONS_USE_SURVEY_AGGREGATE_HELP"),
+      required = TRUE,
+      options = yes_no_options,
+      value = "false"
+    ),
+    use_survey_aggregate = list(
+      name = "use_survey_aggregate",
+      type = "select",
+      required = TRUE,
+      options = yes_no_options,
+      value = "false"
+    ),
+    survey_recently_infected = list(
+      name = "survey_recently_infected",
+      type = "multiselect",
+      required = FALSE
+    ),
+    use_kish_prev = list(
+      name = "use_kish_prev",
+      label = t_("OPTIONS_ADVANCED_USE_KISH_LABEL"),
+      type = "select",
+      required = TRUE,
+      helpText = t_("OPTIONS_ADVANCED_USE_KISH_HELP"),
+      options = yes_no_options,
+      value = "true"
+    ),
+    deff_prev = list(
+      name = "deff_prev",
+      label = t_("OPTIONS_ADVANCED_ESS_SCALING_LABEL"),
+      type = "number",
+      required = TRUE,
+      helpText = t_("OPTIONS_ADVANCED_DEFF_PREVALENCE_HELP"),
+      value = 1.0
+    ),
+    use_kish_artcov = list(
+      name = "use_kish_artcov",
+      label = t_("OPTIONS_ADVANCED_USE_KISH_LABEL"),
+      type = "select",
+      required = TRUE,
+      helpText = t_("OPTIONS_ADVANCED_USE_KISH_HELP"),
+      options = yes_no_options,
+      value = "true"
+    ),
+    deff_artcov = list(
+      name = "deff_artcov",
+      label = t_("OPTIONS_ADVANCED_ESS_SCALING_LABEL"),
+      type = "number",
+      required = TRUE,
+      helpText = t_("OPTIONS_ADVANCED_DEFF_ART_COVERAGE_HELP"),
+      value = 1.0
+    ),
+    use_kish_recent = list(
+      name = "use_kish_recent",
+      label = t_("OPTIONS_ADVANCED_USE_KISH_LABEL"),
+      type = "select",
+      required = TRUE,
+      helpText = t_("OPTIONS_ADVANCED_USE_KISH_HELP"),
+      options = yes_no_options,
+      value = "true"
+    ),
+    deff_recent = list(
+      name = "deff_recent",
+      label = t_("OPTIONS_ADVANCED_ESS_SCALING_LABEL"),
+      type = "number",
+      required = TRUE,
+      helpText = t_("OPTIONS_ADVANCED_DEFF_PROPORTION_RECENT_HELP"),
+      value = 1.0
     )
   )
 }
 
 get_calibration_controls <- function() {
-  calibration_level_opts <- list(
-    list(
-      id = "none",
-      label = t_("OPTIONS_CALIBRATION_ADJUST_TO_SPECTRUM_NONE")
-    ),
-    list(
-      id = "national",
-      label = t_("OPTIONS_CALIBRATION_ADJUST_TO_SPECTRUM_NATIONAL")
-    ),
-    list(
-      id = "subnational",
-      label = t_("OPTIONS_CALIBRATION_ADJUST_TO_SPECTRUM_SUBNATIONAL")
-    )
-  )
+  calibration_level_opts <- get_calibration_options()
 
   age_strat_opts <- list(
     list(

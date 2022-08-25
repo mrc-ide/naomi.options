@@ -21,29 +21,28 @@ test_that("get_controls_json returns useful error if country unknown", {
 test_that("get_controls_json returns useful error when options are missing", {
   expect_error(get_controls_json("model", "MWI", list(), list()),
                paste0("Failed to find any valid options for control ",
-                      "'area_level' speak to a system administrator"))
+                      "'area_scope' speak to a system administrator"))
 })
 
 test_that("can get model options JSON", {
   mwi_values <- list(
-    survey_prevalence = "test",
-    survey_art_coverage = "test"
+    area_scope = "test"
   )
+  mwi_options <- build_test_options("MWI", "model", mwi_values)
   json <- get_controls_json("model", "MWI", mwi_options, mwi_values)
   out <- jsonlite::fromJSON(json, simplifyVector = FALSE)
 
   ## template text is translated
-  expect_equal(out$controlSections[[1]]$label, "Survey")
+  expect_equal(out$controlSections[[1]]$label, "General")
 
   ## options come from input
   control_1 <- out$controlSections[[1]]$controlGroups[[1]]$controls[[1]]
   expect_equal(control_1$options, mwi_options[[control_1$name]])
 
   ## value comes from csv (not from fallbacks)
-  control_3 <- out$controlSections[[1]]$controlGroups[[3]]$controls[[1]]
-  expect_equal(control_3$name, "survey_prevalence")
-  expect_true(!is.null(mwi_values[["survey_prevalence"]]))
-  expect_true(control_3$value != mwi_values[["survey_prevalence"]])
+  expect_equal(control_1$name, "area_scope")
+  expect_true(!is.null(mwi_values[["area_scope"]]))
+  expect_true(control_3$value != mwi_values[["area_scope"]])
 })
 
 test_that("empty default value is returned in JSON", {
@@ -51,10 +50,12 @@ test_that("empty default value is returned in JSON", {
     survey_prevalence = "AGO2015DHS",
     survey_art_coverage = "AGO2015DHS"
   )
+  ## TODO: up to fixing this test
+  ago_options <- build_test_options("AGO", "model", ago_values)
   json <- get_controls_json("model", "AGO", ago_options, ago_values)
   out <- jsonlite::fromJSON(json, simplifyVector = FALSE)
 
-  control_4 <- out$controlSections[[1]]$controlGroups[[4]]$controls[[1]]
+  control_1 <- out$controlSections[[1]]$controlGroups[[1]]$controls[[1]]
   expect_equal(control_4$name, "survey_art_coverage")
   expect_equal(control_4$value, "")
 })
