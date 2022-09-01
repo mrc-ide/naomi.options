@@ -36,32 +36,34 @@ test_that("can get model options JSON", {
   expect_equal(out$controlSections[[1]]$label, "General")
 
   ## options come from input
-  control_1 <- out$controlSections[[1]]$controlGroups[[1]]$controls[[1]]
-  expect_equal(control_1$options, mwi_options[[control_1$name]])
+  control <- get_control(out, "area_scope")
+  expect_equal(control$options, mwi_options[[control$name]])
 
   ## value comes from csv (not from fallbacks)
-  expect_equal(control_1$name, "area_scope")
+  expect_equal(control$name, "area_scope")
   expect_true(!is.null(mwi_values[["area_scope"]]))
-  expect_true(control_3$value != mwi_values[["area_scope"]])
+  expect_true(control$value != mwi_values[["area_scope"]])
 })
 
-test_that("empty default value is returned in JSON", {
+test_that("empty default value is returned even when fallback provided", {
   ago_values <- list(
     survey_prevalence = "AGO2015DHS",
     survey_art_coverage = "AGO2015DHS"
   )
-  ## TODO: up to fixing this test
   ago_options <- build_test_options("AGO", "model", ago_values)
   json <- get_controls_json("model", "AGO", ago_options, ago_values)
   out <- jsonlite::fromJSON(json, simplifyVector = FALSE)
 
-  control_1 <- out$controlSections[[1]]$controlGroups[[1]]$controls[[1]]
-  expect_equal(control_4$name, "survey_art_coverage")
-  expect_equal(control_4$value, "")
+  control <- get_control(out, "survey_art_coverage")
+  expect_equal(control$value, "")
 })
 
 test_that("fallback values used if defaults are invalid", {
-  options <- mwi_options
+  mwi_values <- list(
+    area_level = "1",
+    survey_prevalence = "test"
+  )
+  options <- build_test_options("MWI", "model", mwi_values)
   options$area_level <- list(
     list(
       id = "1",
@@ -75,45 +77,64 @@ test_that("fallback values used if defaults are invalid", {
     )
   )
 
-  values <- list(
-    area_level = "1",
-    survey_prevalence = "test",
-    number_type = 10
-  )
-
-  controls <- get_model_controls()
-  controls$number_type <- list(
-    name = "number_type",
-    type = "number",
-    helpText = "help123",
-    required = TRUE
-  )
-
-  mock_get_model_controls <- mockery::mock(controls)
-  mock_build_json <- mockery::mock(TRUE)
-
-  with_mock(
-    "naomi.options:::build_json" = mock_build_json,
-    "naomi.options:::get_model_controls" = mock_get_model_controls, {
-      json <- get_controls_json("model", "MWI", options, values)
-    })
-
-  mockery::expect_called(mock_build_json, 1)
-  mockery::expect_called(mock_get_model_controls, 1)
-  out <- mockery::mock_args(mock_build_json)[[1]][[2]]
+  json <- get_controls_json("model", "MWI", options, mwi_values)
+  out <- jsonlite::fromJSON(json, simplifyVector = FALSE)
 
   ## select value comes from fallback
-  expect_equal(out$area_level$value, scalar("1"))
+  area_level <- get_control(out, "area_level")
+  expect_equal(area_level$value, "1")
 
   ## multiselect value comes from fallback
-  expect_equal(out$survey_prevalence$value, scalar("test"))
+  survey_prevalence <- get_control(out, "survey_prevalence")
+  expect_equal(survey_prevalence$value, "test")
+})
 
-  ## number value comes from fallback
-  expect_equal(out$number_type$value, scalar(10))
+test_that("hardcoded fallback used if defaults and data fallback are invalid", {
+  xxx_values <- list(
+    adjust_area_growth = "invalid",
+    use_survey_aggregate = "invalid"
+  )
+  options <- build_test_options("XXX", "model", xxx_values)
+  yes_no <- list(
+    list(
+      id = "true",
+      label = "yes"
+    ),
+    list(
+      id = "false",
+      label = "no"
+    )
+  )
+  options$adjust_area_growth <- yes_no
+  options$use_survey_aggregate <- yes_no
+
+  ## No example of multiselect where a default value is set in the controls
+  ## so mock it
+  controls <- get_model_controls()
+  controls$use_survey_aggregate$type <- "multiselect"
+  mock_get_model_controls <- mockery::mock(controls)
+
+  with_mock(
+    "naomi.options:::get_model_controls" = mock_get_model_controls, {
+      json <- get_controls_json("model", "XXX", options, xxx_values)
+  })
+  out <- jsonlite::fromJSON(json, simplifyVector = FALSE)
+
+  ## select value comes from fallback
+  adjust_area_growth <- get_control(out, "adjust_area_growth")
+  expect_equal(adjust_area_growth$value, "false")
+
+  ## multiselect value comes from fallback
+  use_survey_aggregate <- get_control(out, "use_survey_aggregate")
+  expect_equal(use_survey_aggregate$value, "false")
 })
 
 test_that("fallback to no value if defaults and fallback values are invalid", {
-  options <- mwi_options
+  mwi_values <- list(
+    area_level = "test",
+    survey_prevalence = "test"
+  )
+  options <- build_test_options("MWI", "model", mwi_values)
   options$area_level <- list(
     list(
       id = "invalid",
@@ -127,48 +148,24 @@ test_that("fallback to no value if defaults and fallback values are invalid", {
     )
   )
 
-  values <- list(
-    area_level = "test",
-    survey_prevalence = "test"
-  )
-
-  controls <- get_model_controls()
-  controls$number_type <- list(
-    name = "number_type",
-    type = "number",
-    helpText = "help123",
-    required = TRUE
-  )
-
-  mock_get_model_controls <- mockery::mock(controls)
-  mock_build_json <- mockery::mock(TRUE)
-
-  with_mock(
-    "naomi.options:::build_json" = mock_build_json,
-    "naomi.options:::get_model_controls" = mock_get_model_controls, {
-      json <- get_controls_json("model", "MWI", options, values)
-    })
-
-  mockery::expect_called(mock_build_json, 1)
-  mockery::expect_called(mock_get_model_controls, 1)
-  out <- mockery::mock_args(mock_build_json)[[1]][[2]]
+  json <- get_controls_json("model", "MWI", options, mwi_values)
+  out <- jsonlite::fromJSON(json, simplifyVector = FALSE)
 
   ## select value not in JSON
-  expect_true(!("value" %in% names(out$area_level)))
+  area_level <- get_control(out, "area_level")
+  expect_true(!("value" %in% names(area_level)))
 
   ## multiselect value not in JSON
-  expect_true(!("value" %in% names(out$survey_prevalence)))
-
-  ## number value not in JSON
-  expect_true(!("value" %in% names(out$number_type)))
+  survey_prevalence <- get_control(out, "survey_prevalence")
+  expect_true(!("value" %in% names(survey_prevalence)))
 })
 
 test_that("options JSON can get multiselect default", {
-  json <- get_controls_json("model", "CMR", cmr_options, list())
+  xxx_options <- build_test_options("XXX", "model", NULL)
+  json <- get_controls_json("model", "XXX", xxx_options, list())
   out <- jsonlite::fromJSON(json, simplifyVector = FALSE)
 
   ## multiselect value from csv
-  control_3 <- out$controlSections[[1]]$controlGroups[[3]]$controls[[1]]
-  expect_equal(control_3$name, "survey_prevalence")
-  expect_length(control_3$value, 2)
+  survey_prevalence <- get_control(out, "survey_prevalence")
+  expect_length(survey_prevalence$value, 2)
 })

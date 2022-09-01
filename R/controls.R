@@ -273,35 +273,31 @@ get_model_controls <- function() {
       help_text = t_("OPTIONS_ADVANCED_OUTPUT_AWARE_HELP"),
       required = TRUE,
       options = yes_no_options,
-      value = TRUE
+      value = "true"
     ),
     max_iterations = list(
       name = "max_iteration",
       type = "number",
       helpText = t_("OPTIONS_ADVANCED_MAX_ITERATIONS_HELP"),
-      required = TRUE,
-      value = 250
+      required = TRUE
     ),
     no_of_samples = list(
       name = "no_of_samples",
       type = "number",
       helpText = t_("OPTIONS_ADVANCED_NO_OF_SIMULATIONS_HELP"),
-      required = TRUE,
-      value = 1000
+      required = TRUE
     ),
     rng_seed = list(
       name = "rng_seed",
       type = "number",
       helpText = t_("OPTIONS_ADVANCED_SIMULATION_SEED_HELP"),
-      required = FALSE,
-      value = 28
+      required = FALSE
     ),
     artattend_log_gamma_offset = list(
       name = "artattend_log_gamma_offset",
       type = "number",
       helpText = t_("OPTIONS_ADVANCED_LOGIT_HELP"),
-      required = TRUE,
-      value = -4
+      required = TRUE
     ),
     rho_paed_x_term = list(
       name = "rho_paed_x_term",
@@ -358,8 +354,7 @@ get_model_controls <- function() {
       label = t_("OPTIONS_ADVANCED_ESS_SCALING_LABEL"),
       type = "number",
       required = TRUE,
-      helpText = t_("OPTIONS_ADVANCED_DEFF_PREVALENCE_HELP"),
-      value = 1.0
+      helpText = t_("OPTIONS_ADVANCED_DEFF_PREVALENCE_HELP")
     ),
     use_kish_artcov = list(
       name = "use_kish_artcov",
@@ -375,8 +370,7 @@ get_model_controls <- function() {
       label = t_("OPTIONS_ADVANCED_ESS_SCALING_LABEL"),
       type = "number",
       required = TRUE,
-      helpText = t_("OPTIONS_ADVANCED_DEFF_ART_COVERAGE_HELP"),
-      value = 1.0
+      helpText = t_("OPTIONS_ADVANCED_DEFF_ART_COVERAGE_HELP")
     ),
     use_kish_recent = list(
       name = "use_kish_recent",
@@ -392,8 +386,7 @@ get_model_controls <- function() {
       label = t_("OPTIONS_ADVANCED_ESS_SCALING_LABEL"),
       type = "number",
       required = TRUE,
-      helpText = t_("OPTIONS_ADVANCED_DEFF_PROPORTION_RECENT_HELP"),
-      value = 1.0
+      helpText = t_("OPTIONS_ADVANCED_DEFF_PROPORTION_RECENT_HELP")
     )
   )
 }

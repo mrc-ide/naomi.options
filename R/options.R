@@ -73,14 +73,17 @@ has_options <- function(control) {
   !is.null(control) && control$type %in% c("select", "multiselect")
 }
 
+missing_required_options <- function(control) {
+  control$required && (is.null(control$options) || length(control$options) == 0)
+}
+
 set_options <- function(controls, options) {
   for (id in names(controls)) {
     if (has_options(controls[[id]])) {
       if (!is.null(options[[id]])) {
         controls[[id]]$options <- options[[id]]
       }
-      if (is.null(controls[[id]]$options) ||
-          length(controls[[id]]$options) == 0) {
+      if (missing_required_options(controls[[id]])) {
         stop(t_("FAILED_TO_SET_OPTIONS", list(control = controls[[id]]$name)))
       }
     }
@@ -110,6 +113,8 @@ set_select_value <- function(control, default, fallback) {
     value <- default
   } else if (is_valid(fallback)) {
     value <- fallback
+  } else if (is_valid(control$value)) {
+    value <- control$value
   } else {
     value <- NULL
   }
@@ -130,6 +135,8 @@ set_multiselect_value <- function(control, default, fallback) {
     value <- default
   } else if (is_valid(fallback)) {
     value <- fallback
+  } else if (is_valid(control$value)) {
+    value <- control$value
   } else {
     value <- NULL
   }
@@ -137,13 +144,8 @@ set_multiselect_value <- function(control, default, fallback) {
 }
 
 set_number_value <- function(control, default, fallback) {
-  is_valid <- function(x) length(x) == 1
-  if (is_valid(default)) {
-    value <- default
-  } else if (is_valid(fallback)) {
-    value <- fallback
-  } else {
-    value <- NULL
-  }
-  value
+  ## For number type, we convert types read from default csv and error
+  ## early if of wrong type. So it should always be valid at this point
+  ## and we don't need to fallback.
+  default
 }
