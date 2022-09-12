@@ -46,4 +46,3 @@ assert_scalar_logical <- function(x, name = deparse(substitute(x))) {
   assert_scalar(x, name)
   assert_logical(x, name)
 }
-
