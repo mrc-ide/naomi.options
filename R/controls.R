@@ -1,3 +1,51 @@
+control <- function(name, type, required, label = NULL, help_text = NULL,
+                    options = NULL, min = NULL, max = NULL) {
+  assert_scalar_character(name)
+  assert_scalar_character(type)
+  assert_scalar_logical(required)
+  if (!is.null(label)) {
+    assert_scalar_character(label)
+  }
+  if (!is.null(help_text)) {
+    assert_scalar_character(help_text)
+  }
+  if (!is.null(options)) {
+    if (!is.null(min) || !is.null(max)) {
+      stop("Control can specify either 'options' or 'min' and 'max' not both")
+    }
+    if (!is.list(options) || !all(vlapply(options, is.list))) {
+      stop("'options' must be a list of lists")
+    }
+    for (option in options) {
+      if (!setequal(names(option), c("id", "label"))) {
+        props <- paste(sprintf("'%s'", names(option)), collapse = ", ")
+        stop(sprintf(paste0(
+          "'options' has option with properties %s, ",
+          "must be 'id' and 'label' only"),
+          props))
+      }
+    }
+  }
+  if (!is.null(min)) {
+    assert_scalar_numeric(min)
+  }
+  if (!is.null(max)) {
+    assert_scalar_numeric(max)
+  }
+  control <- list(
+    name = name,
+    type = type,
+    required = required
+  )
+  control$label <- label
+  control$helpText <- help_text
+  control$options <- options
+  control$min <- min
+  control$max <- max
+  control
+}
+
+
 get_calibration_options <- function() {
   list(
     list(
