@@ -24,10 +24,9 @@ remotes::install_github("mrc-ide/naomi.options", upgrade = FALSE)
 
 ![](diagram/logic.png?raw=true)
 
-There are 3 possible sources for default values, in order of precedence
+There are 2 possible sources for default values, in order of precedence
 * `default_options.csv`
 * `fallback_values` coming from the data
-* hardcoded fallback from `controls.R`
 
 When building the options from hintr the way this works is
 1. hintr receives a request to return options with paths to files
@@ -35,7 +34,7 @@ When building the options from hintr the way this works is
 1. hintr calls naomi.options `get_controls_json` with the `iso3` the `options` from the data and `fallback_values` from the data. Note the `options` and `fallback_values` can be empty and indeed are for calibrate options
 1. naomi.options reads the controls from `controls.R` for this type, and adds any `options` passed as an arg into this list for each `control`
 1. naomi.options reads the default values from `default_options.csv` 
-1. For each control, naomi.options checks if csv value is valid and if it is sets this as the `value` for the control. If it is invalid it checks if there is a default in the `fallback_values` if not it checks if there is a default already set from the `controls.R` and if not uses an empty default `value`
+1. For each control, naomi.options checks if csv value is valid and if it is sets this as the `value` for the control. If it is invalid it checks if there is a default in the `fallback_values` if not uses an empty default `value`
 1. naomi.options takes the completed set of controls, serializes them to JSON and embeds them in the options json from `inst/model_options.json` or `inst/calibration_options.json` and returns to hintr
 1. hintr returns json back as response
 
