@@ -5,9 +5,11 @@ control <- function(name, type, required, label = NULL, help_text = NULL,
   assert_scalar_logical(required)
   if (!is.null(label)) {
     assert_scalar_character(label)
+    label <- t_(label)
   }
   if (!is.null(help_text)) {
     assert_scalar_character(help_text)
+    help_text <- t_(help_text)
   }
   if (!is.null(options)) {
     if (!is.null(min) || !is.null(max)) {
@@ -151,7 +153,7 @@ get_model_controls <- function() {
       name = "calendar_quarter_t3",
       type = "select",
       required = TRUE,
-      help_text = t_("OPTIONS_OUTPUT_PROJECTION_QUARTER_HELP"),
+      help_text = "OPTIONS_OUTPUT_PROJECTION_QUARTER_HELP",
       options = list(
         list(
           id = "CY2020Q1",
@@ -231,113 +233,113 @@ get_model_controls <- function() {
     ),
     include_art_t1 = control(
       name = "include_art_t1",
-      label = t_("OPTIONS_T1_LABEL"),
+      label = "OPTIONS_T1_LABEL",
       type = "select",
-      help_text = t_("OPTIONS_T1_HELP"),
+      help_text = "OPTIONS_T1_HELP",
       required = TRUE,
       options = yes_no_options
     ),
     include_art_t2 = control(
       name = "include_art_t2",
-      label = t_("OPTIONS_T2_LABEL"),
+      label = "OPTIONS_T2_LABEL",
       type = "select",
-      help_text = t_("OPTIONS_T2_HELP"),
+      help_text = "OPTIONS_T2_HELP",
       required = TRUE,
       options = yes_no_options
     ),
     artattend = control(
       name = "artattend",
       type = "select",
-      help_text = t_("OPTIONS_ART_NEIGHBOURING_DISTRICT_HELP"),
+      help_text = "OPTIONS_ART_NEIGHBOURING_DISTRICT_HELP",
       required = TRUE,
       options = yes_no_options
     ),
     artattend_t2 = control(
       name = "artattend_t2",
       type = "select",
-      help_text = t_("OPTIONS_ART_TIME_VARYING_ART_ATTEND_HELP"),
+      help_text = "OPTIONS_ART_TIME_VARYING_ART_ATTEND_HELP",
       required = TRUE,
       options = yes_no_options
     ),
     anc_clients_year2 = control(
       name = "anc_clients_year2",
-      label = t_("OPTIONS_T2_LABEL"),
+      label = "OPTIONS_T2_LABEL",
       type = "select",
-      help_text = t_("OPTIONS_T2_HELP"),
+      help_text = "OPTIONS_T2_HELP",
       required = FALSE
     ),
     anc_clients_year2_num_months = control(
       name = "anc_clients_year2_num_months",
-      label = t_("OPTIONS_T2_LABEL"),
+      label = "OPTIONS_T2_LABEL",
       type = "select",
-      help_text = t_("OPTIONS_ANC_MONTHS_HELP"),
+      help_text = "OPTIONS_ANC_MONTHS_HELP",
       required = TRUE,
       options = month_options
     ),
     anc_prevalence_year1 = control(
       name = "anc_prevalence_year1",
-      label = t_("OPTIONS_T1_LABEL"),
+      label = "OPTIONS_T1_LABEL",
       type = "select",
-      help_text = t_("OPTIONS_T1_HELP"),
+      help_text = "OPTIONS_T1_HELP",
       required = FALSE
     ),
     anc_prevalence_year2 = control(
       name = "anc_prevalence_year2",
-      label = t_("OPTIONS_T2_LABEL"),
+      label = "OPTIONS_T2_LABEL",
       type = "select",
-      help_text = t_("OPTIONS_T2_HELP"),
+      help_text = "OPTIONS_T2_HELP",
       required = FALSE
     ),
     anc_art_coverage_year1 = control(
       name = "anc_art_coverage_year1",
-      label = t_("OPTIONS_T1_LABEL"),
+      label = "OPTIONS_T1_LABEL",
       type = "select",
-      help_text = t_("OPTIONS_T1_HELP"),
+      help_text = "OPTIONS_T1_HELP",
       required = FALSE
     ),
     anc_art_coverage_year2 = control(
       name = "anc_art_coverage_year2",
-      label = t_("OPTIONS_T2_LABEL"),
+      label = "OPTIONS_T2_LABEL",
       type = "select",
-      help_text = t_("OPTIONS_T2_HELP"),
+      help_text = "OPTIONS_T2_HELP",
       required = FALSE
     ),
     spectrum_population_calibration = control(
       name = "spectrum_population_calibration",
       type = "select",
-      help_text = t_("OPTIONS_CALIBRATION_ADJUST_TO_SPECTRUM_POPULATION_HELP"),
+      help_text = "OPTIONS_CALIBRATION_ADJUST_TO_SPECTRUM_POPULATION_HELP",
       required = TRUE,
       options = get_calibration_options()
     ),
     output_aware_plhiv = control(
       name = "output_aware_plhiv",
       type = "select",
-      help_text = t_("OPTIONS_ADVANCED_OUTPUT_AWARE_HELP"),
+      help_text = "OPTIONS_ADVANCED_OUTPUT_AWARE_HELP",
       required = TRUE,
       options = yes_no_options
     ),
     max_iterations = control(
       name = "max_iteration",
       type = "number",
-      help_text = t_("OPTIONS_ADVANCED_MAX_ITERATIONS_HELP"),
+      help_text = "OPTIONS_ADVANCED_MAX_ITERATIONS_HELP",
       required = TRUE
     ),
     no_of_samples = control(
       name = "no_of_samples",
       type = "number",
-      help_text = t_("OPTIONS_ADVANCED_NO_OF_SIMULATIONS_HELP"),
+      help_text = "OPTIONS_ADVANCED_NO_OF_SIMULATIONS_HELP",
       required = TRUE
     ),
     rng_seed = control(
       name = "rng_seed",
       type = "number",
-      help_text = t_("OPTIONS_ADVANCED_SIMULATION_SEED_HELP"),
+      help_text = "OPTIONS_ADVANCED_SIMULATION_SEED_HELP",
       required = FALSE
     ),
     artattend_log_gamma_offset = control(
       name = "artattend_log_gamma_offset",
       type = "number",
-      help_text = t_("OPTIONS_ADVANCED_LOGIT_HELP"),
+      help_text = "OPTIONS_ADVANCED_LOGIT_HELP",
       required = TRUE
     ),
     rho_paed_x_term = control(
@@ -361,7 +363,7 @@ get_model_controls <- function() {
     adjust_area_growth = control(
       name = "adjust_area_growth",
       type = "select",
-      help_text = t_("OPTIONS_USE_SURVEY_AGGREGATE_HELP"),
+      help_text = "OPTIONS_USE_SURVEY_AGGREGATE_HELP",
       required = TRUE,
       options = yes_no_options
     ),
@@ -378,48 +380,48 @@ get_model_controls <- function() {
     ),
     use_kish_prev = control(
       name = "use_kish_prev",
-      label = t_("OPTIONS_ADVANCED_USE_KISH_LABEL"),
+      label = "OPTIONS_ADVANCED_USE_KISH_LABEL",
       type = "select",
       required = TRUE,
-      help_text = t_("OPTIONS_ADVANCED_USE_KISH_HELP"),
+      help_text = "OPTIONS_ADVANCED_USE_KISH_HELP",
       options = yes_no_options
     ),
     deff_prev = control(
       name = "deff_prev",
-      label = t_("OPTIONS_ADVANCED_ESS_SCALING_LABEL"),
+      label = "OPTIONS_ADVANCED_ESS_SCALING_LABEL",
       type = "number",
       required = TRUE,
-      help_text = t_("OPTIONS_ADVANCED_DEFF_PREVALENCE_HELP")
+      help_text = "OPTIONS_ADVANCED_DEFF_PREVALENCE_HELP"
     ),
     use_kish_artcov = control(
       name = "use_kish_artcov",
-      label = t_("OPTIONS_ADVANCED_USE_KISH_LABEL"),
+      label = "OPTIONS_ADVANCED_USE_KISH_LABEL",
       type = "select",
       required = TRUE,
-      help_text = t_("OPTIONS_ADVANCED_USE_KISH_HELP"),
+      help_text = "OPTIONS_ADVANCED_USE_KISH_HELP",
       options = yes_no_options
     ),
     deff_artcov = control(
       name = "deff_artcov",
-      label = t_("OPTIONS_ADVANCED_ESS_SCALING_LABEL"),
+      label = "OPTIONS_ADVANCED_ESS_SCALING_LABEL",
       type = "number",
       required = TRUE,
-      help_text = t_("OPTIONS_ADVANCED_DEFF_ART_COVERAGE_HELP")
+      help_text = "OPTIONS_ADVANCED_DEFF_ART_COVERAGE_HELP"
     ),
     use_kish_recent = control(
       name = "use_kish_recent",
-      label = t_("OPTIONS_ADVANCED_USE_KISH_LABEL"),
+      label = "OPTIONS_ADVANCED_USE_KISH_LABEL",
       type = "select",
       required = TRUE,
-      help_text = t_("OPTIONS_ADVANCED_USE_KISH_HELP"),
+      help_text = "OPTIONS_ADVANCED_USE_KISH_HELP",
       options = yes_no_options
     ),
     deff_recent = control(
       name = "deff_recent",
-      label = t_("OPTIONS_ADVANCED_ESS_SCALING_LABEL"),
+      label = "OPTIONS_ADVANCED_ESS_SCALING_LABEL",
       type = "number",
       required = TRUE,
-      help_text = t_("OPTIONS_ADVANCED_DEFF_PROPORTION_RECENT_HELP")
+      help_text = "OPTIONS_ADVANCED_DEFF_PROPORTION_RECENT_HELP"
     )
   )
 }
@@ -449,74 +451,74 @@ get_calibration_controls <- function() {
   list(
     spectrum_plhiv_calibration_level = control(
       name = "spectrum_plhiv_calibration_level",
-      label = t_("OPTIONS_CALIBRATION_ADJUST_TO_SPECTRUM_LEVEL_LABEL"),
+      label = "OPTIONS_CALIBRATION_ADJUST_TO_SPECTRUM_LEVEL_LABEL",
       type = "select",
       required = TRUE,
       options = calibration_level_opts,
-      help_text = t_("OPTIONS_CALIBRATION_ADJUST_TO_SPECTRUM_PLHIV_HELP")
+      help_text = "OPTIONS_CALIBRATION_ADJUST_TO_SPECTRUM_PLHIV_HELP"
     ),
 
     spectrum_plhiv_calibration_strat = control(
       name = "spectrum_plhiv_calibration_strat",
-      label = t_("OPTIONS_CALIBRATION_ADJUST_TO_SPECTRUM_STRATIFICATION_LABEL"),
+      label = "OPTIONS_CALIBRATION_ADJUST_TO_SPECTRUM_STRATIFICATION_LABEL",
       type = "select",
       required = TRUE,
       options = age_strat_opts,
-      help_text = t_("OPTIONS_CALIBRATION_ADJUST_TO_SPECTRUM_PLHIV_HELP")
+      help_text = "OPTIONS_CALIBRATION_ADJUST_TO_SPECTRUM_PLHIV_HELP"
     ),
 
     spectrum_artnum_calibration_level = control(
       name = "spectrum_artnum_calibration_level",
-      label = t_("OPTIONS_CALIBRATION_ADJUST_TO_SPECTRUM_LEVEL_LABEL"),
+      label = "OPTIONS_CALIBRATION_ADJUST_TO_SPECTRUM_LEVEL_LABEL",
       type = "select",
       required = TRUE,
       options = calibration_level_opts,
-      help_text = t_("OPTIONS_CALIBRATION_ADJUST_TO_SPECTRUM_ART_HELP")
+      help_text = "OPTIONS_CALIBRATION_ADJUST_TO_SPECTRUM_ART_HELP"
     ),
 
     spectrum_artnum_calibration_strat = control(
       name = "spectrum_artnum_calibration_strat",
-      label = t_("OPTIONS_CALIBRATION_ADJUST_TO_SPECTRUM_STRATIFICATION_LABEL"),
+      label = "OPTIONS_CALIBRATION_ADJUST_TO_SPECTRUM_STRATIFICATION_LABEL",
       type = "select",
       required = TRUE,
       options = age_strat_opts,
-      help_text = t_("OPTIONS_CALIBRATION_ADJUST_TO_SPECTRUM_ART_HELP")
+      help_text = "OPTIONS_CALIBRATION_ADJUST_TO_SPECTRUM_ART_HELP"
     ),
 
     spectrum_aware_calibration_level = control(
       name = "spectrum_aware_calibration_level",
-      label = t_("OPTIONS_CALIBRATION_ADJUST_TO_SPECTRUM_LEVEL_LABEL"),
+      label = "OPTIONS_CALIBRATION_ADJUST_TO_SPECTRUM_LEVEL_LABEL",
       type = "select",
       required = TRUE,
       options = calibration_level_opts,
-      help_text = t_("OPTIONS_CALIBRATION_ADJUST_TO_SPECTRUM_AWARE_HELP")
+      help_text = "OPTIONS_CALIBRATION_ADJUST_TO_SPECTRUM_AWARE_HELP"
     ),
 
     spectrum_aware_calibration_strat = control(
       name = "spectrum_aware_calibration_strat",
-      label = t_("OPTIONS_CALIBRATION_ADJUST_TO_SPECTRUM_STRATIFICATION_LABEL"),
+      label = "OPTIONS_CALIBRATION_ADJUST_TO_SPECTRUM_STRATIFICATION_LABEL",
       type = "select",
       required = TRUE,
       options = age_strat_opts,
-      help_text = t_("OPTIONS_CALIBRATION_ADJUST_TO_SPECTRUM_AWARE_HELP")
+      help_text = "OPTIONS_CALIBRATION_ADJUST_TO_SPECTRUM_AWARE_HELP"
     ),
 
     spectrum_infections_calibration_level = control(
       name = "spectrum_infections_calibration_level",
-      label = t_("OPTIONS_CALIBRATION_ADJUST_TO_SPECTRUM_LEVEL_LABEL"),
+      label = "OPTIONS_CALIBRATION_ADJUST_TO_SPECTRUM_LEVEL_LABEL",
       type = "select",
       required = TRUE,
       options = calibration_level_opts,
-      help_text = t_("OPTIONS_CALIBRATION_ADJUST_TO_SPECTRUM_INFECTIONS_HELP")
+      help_text = "OPTIONS_CALIBRATION_ADJUST_TO_SPECTRUM_INFECTIONS_HELP"
     ),
 
     spectrum_infections_calibration_strat = control(
       name = "spectrum_infections_calibration_strat",
-      label = t_("OPTIONS_CALIBRATION_ADJUST_TO_SPECTRUM_STRATIFICATION_LABEL"),
+      label = "OPTIONS_CALIBRATION_ADJUST_TO_SPECTRUM_STRATIFICATION_LABEL",
       type = "select",
       required = TRUE,
       options = age_strat_opts,
-      help_text = t_("OPTIONS_CALIBRATION_ADJUST_TO_SPECTRUM_INFECTIONS_HELP")
+      help_text = "OPTIONS_CALIBRATION_ADJUST_TO_SPECTRUM_INFECTIONS_HELP"
     ),
 
     calibrate_method = control(
