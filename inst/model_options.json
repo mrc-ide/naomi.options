@@ -1,15 +1,39 @@
 {
   "controlSections": [
     {
-      "label": "t_(OPTIONS_SURVEY_LABEL)",
-      "description": "t_(OPTIONS_SURVEY_DESCRIPTION)",
+      "label": "t_(OPTIONS_GENERAL_LABEL)",
+      "description": "t_(OPTIONS_GENERAL_DESCRIPTION)",
       "controlGroups": [
+        {
+          "label": "t_(OPTIONS_GENERAL_AREA_SCOPE_LABEL)",
+          "controls": [
+            "<+area_scope+>"
+          ]
+        },
         {
           "label": "t_(OPTIONS_GENERAL_AREA_LEVEL_LABEL)",
           "controls": [
             "<+area_level+>"
           ]
         },
+        {
+          "label": "t_(OPTIONS_GENERAL_CALENDAR_QUARTER_T2_LABEL)",
+          "controls": [
+            "<+calendar_quarter_t2+>"
+          ]
+        },
+        {
+          "label": "t_(OPTIONS_OUTPUT_PROJECTION_QUARTER_LABEL)",
+          "controls": [
+            "<+calendar_quarter_t3+>"
+          ]
+        }
+      ]
+    },
+    {
+      "label": "t_(OPTIONS_SURVEY_LABEL)",
+      "description": "t_(OPTIONS_SURVEY_DESCRIPTION)",
+      "controlGroups": [
         {
           "label": "t_(OPTIONS_QUARTER1_LABEL)",
           "controls": [
@@ -27,11 +51,169 @@
           "controls": [
             "<+survey_art_coverage+>"
           ]
+        }
+      ]
+    },
+    {
+      "label": "t_(OPTIONS_ANC_LABEL)",
+      "description": "t_(OPTIONS_ANC_DESCRIPTION)",
+      "controlGroups": [
+        {
+          "label": "t_(OPTIONS_ANC_CLIENTS_LABEL)",
+          "controls": [
+            "<+anc_clients_year2+>"
+          ]
+        },
+        {
+          "label": "t_(OPTIONS_ANC_MONTHS_LABEL)",
+          "controls": [
+            "<+anc_clients_year2_num_months+>"
+          ]
+        },
+        {
+          "label": "t_(OPTIONS_ANC_PREVALENCE_LABEL)",
+          "controls": [
+            "<+anc_prevalence_year1+>",
+            "<+anc_prevalence_year2+>"
+          ]
+        },
+        {
+          "label": "t_(OPTIONS_ANC_COVERAGE_LABEL)",
+          "controls": [
+            "<+anc_art_coverage_year1+>",
+            "<+anc_art_coverage_year2+>"
+          ]
+        }
+      ]
+    },
+    {
+      "label": "t_(OPTIONS_ART_LABEL)",
+      "description": "t_(OPTIONS_ART_DESCRIPTION)",
+      "controlGroups": [
+        {
+          "label": "t_(OPTIONS_ART_INCLUDE_ART_LABEL)",
+          "controls": [
+            "<+include_art_t1+>",
+            "<+include_art_t2+>"
+          ]
+        },
+        {
+          "label": "t_(OPTIONS_ART_NEIGHBOURING_DISTRICT_LABEL)",
+          "controls": [
+            "<+artattend+>"
+          ]
+        },
+        {
+          "label": "t_(OPTIONS_ART_TIME_VARYING_ART_ATTEND_LABEL)",
+          "controls": [
+            "<+artattend_t2+>"
+          ]
+        }
+      ]
+    },
+    {
+      "label": "t_(OPTIONS_POPULATION_CALIBRATION_LABEL)",
+      "description": "t_(OPTIONS_POPULATION_CALIBRATION_DESCRIPTION)",
+      "controlGroups": [
+        {
+          "label": "t_(OPTIONS_CALIBRATION_ADJUST_TO_SPECTRUM_POPULATION_LABEL)",
+          "controls": [
+            "<+spectrum_population_calibration+>"
+          ]
+        }
+      ]
+    },
+    {
+      "label": "t_(OPTIONS_ADVANCED_LABEL)",
+      "description": "t_(OPTIONS_ADVANCED_DESCRIPTION)",
+      "collapsible": true,
+      "collapsed": true,
+      "controlGroups": [
+        {
+          "label": "t_(OPTIONS_ADVANCED_OUTPUT_AWARE_LABEL)",
+          "controls": [
+            "<+output_aware_plhiv+>"
+          ]
         },
         {
           "label": "t_(OPTIONS_ADVANCED_MAX_ITERATIONS_LABEL)",
           "controls": [
             "<+max_iterations+>"
+          ]
+        },
+        {
+          "label": "t_(OPTIONS_ADVANCED_NO_OF_SIMULATIONS_LABEL)",
+          "controls": [
+            "<+no_of_samples+>"
+          ]
+        },
+        {
+          "label": "t_(OPTIONS_ADVANCED_SIMULATION_SEED_LABEL)",
+          "controls": [
+            "<+rng_seed+>"
+          ]
+        },
+        {
+          "label": "t_(OPTIONS_ADVANCED_LOGIT_MEAN_LABEL)",
+          "controls": [
+            "<+artattend_log_gamma_offset+>"
+          ]
+        },
+        {
+          "label": "t_(OPTIONS_ADVANCED_SPATIAL_PAED_PREVALENCE)",
+          "controls": [
+            "<+rho_paed_x_term+>"
+          ]
+        },
+        {
+          "label": "t_(OPTIONS_ADVANCED_PAED_15TO49F_PREVALENCE_RATIO)",
+          "controls": [
+            "<+rho_paed_15to49f_ratio+>"
+          ]
+        },
+        {
+          "label": "t_(OPTIONS_ADVANCED_ALPHA_XST_TERM)",
+          "controls": [
+            "<+alpha_xst_term+>"
+          ]
+        },
+        {
+          "label": "t_(OPTIONS_ADVANCED_ADJUST_AREA_GROWTH)",
+          "controls": [
+            "<+adjust_area_growth+>"
+          ]
+        },
+        {
+          "label": "t_(OPTIONS_USE_SURVEY_AGGREGATE_LABEL)",
+          "controls": [
+            "<+use_survey_aggregate+>"
+          ]
+        },
+        {
+          "label": "t_(OPTIONS_RECENTLY_INFECTED_LABEL)",
+          "controls": [
+            "<+survey_recently_infected+>"
+          ]
+        },
+        {
+          "label": "t_(OPTIONS_ADVANCED_DEFF_PREVALENCE_LABEL)",
+          "controls": [
+            "<+use_kish_prev+>",
+            "<+deff_prev+>"
+          ]
+        },
+        {
+          "label": "t_(OPTIONS_ADVANCED_DEFF_ART_COVERAGE_LABEL)",
+          "controls": [
+            "<+use_kish_artcov+>",
+            "<+deff_artcov+>"
+          ]
+        },
+        {
+          "label": "t_(OPTIONS_ADVANCED_DEFF_PROPORTION_RECENT_LABEL)",
+          "controls": [
+            "<+use_kish_recent+>",
+            "<+deff_recent+>"
           ]
         }
       ]
