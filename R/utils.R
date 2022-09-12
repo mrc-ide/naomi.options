@@ -58,6 +58,6 @@ to_json <- function(x) {
   jsonlite::toJSON(x, json_verbatim = TRUE, na = "null")
 }
 
-vlapply <- function(X, FUN) {
+vlapply <- function(X, FUN) { # nolint
   vapply(X, FUN, logical(1))
 }
