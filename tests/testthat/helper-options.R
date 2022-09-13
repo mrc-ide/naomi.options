@@ -45,35 +45,3 @@ get_control <- function(options_json, name) {
   }
   stop(paste0("Failed to find control with name ", name))
 }
-
-expect_valid <- function(object) {
-  quo <- rlang::enquo(object)
-
-  capture <- function(code) {
-    env <- environment()
-    withCallingHandlers({
-      code
-      NULL
-    }, error = function(cnd) {
-      cnd <- rlang::cnd_entrace(cnd)
-      rlang::return_from(env, cnd)
-    })
-  }
-
-  act <- list()
-  act$cap <- capture(
-    act$val <- rlang::eval_bare(rlang::quo_get_expr(quo),
-                                rlang::quo_get_env(quo))
-  )
-
-  if (!is.null(act$cap)) {
-    ## There has been an error
-    msg <- sprintf("Failed to validate '%s' options for country '%s'",
-                   get("type", environment(quo)),
-                   get("country", environment(quo)))
-    act$cap$message <- paste(msg, act$cap$message, sep = "\n  ")
-    stop(act$cap)
-  }
-
-  invisible(act$val)
-}

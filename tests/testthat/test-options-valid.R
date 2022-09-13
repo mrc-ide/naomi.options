@@ -5,9 +5,17 @@ test_that("default options produce valid JSON", {
   types <- c("model", "calibration")
   for (country in countries) {
     for (type in types) {
-      options <- build_test_options(country, type, NULL)
-      model_options <- get_controls_json(type, country, options, NULL)
-      expect_valid(validator(model_options, error = TRUE))
+      withCallingHandlers({
+        options <- build_test_options(country, type, NULL)
+        model_options <- get_controls_json(type, country, options, NULL)
+        expect_true(validator(model_options, error = TRUE))
+      },
+      error = function(e) {
+        e$message <- sprintf(
+          "Failed to validate '%s' options for country '%s'\n  %s",
+          type, country, e$message)
+        stop(e)
+      })
     }
   }
 })
