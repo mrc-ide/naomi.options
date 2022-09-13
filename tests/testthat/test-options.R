@@ -89,46 +89,6 @@ test_that("fallback values used if defaults are invalid", {
   expect_equal(survey_prevalence$value, "test")
 })
 
-test_that("hardcoded fallback used if defaults and data fallback are invalid", {
-  xxx_values <- list(
-    adjust_area_growth = "invalid",
-    use_survey_aggregate = "invalid"
-  )
-  options <- build_test_options("XXX", "model", xxx_values)
-  yes_no <- list(
-    list(
-      id = "true",
-      label = "yes"
-    ),
-    list(
-      id = "false",
-      label = "no"
-    )
-  )
-  options$adjust_area_growth <- yes_no
-  options$use_survey_aggregate <- yes_no
-
-  ## No example of multiselect where a default value is set in the controls
-  ## so mock it
-  controls <- get_model_controls()
-  controls$use_survey_aggregate$type <- "multiselect"
-  mock_get_model_controls <- mockery::mock(controls)
-
-  with_mock(
-    "naomi.options:::get_model_controls" = mock_get_model_controls, {
-      json <- get_controls_json("model", "XXX", options, xxx_values)
-  })
-  out <- jsonlite::fromJSON(json, simplifyVector = FALSE)
-
-  ## select value comes from fallback
-  adjust_area_growth <- get_control(out, "adjust_area_growth")
-  expect_equal(adjust_area_growth$value, "false")
-
-  ## multiselect value comes from fallback
-  use_survey_aggregate <- get_control(out, "use_survey_aggregate")
-  expect_equal(use_survey_aggregate$value, "false")
-})
-
 test_that("fallback to no value if defaults and fallback values are invalid", {
   mwi_values <- list(
     area_level = "test",

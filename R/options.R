@@ -4,7 +4,6 @@
 #' country. The control info will be filled in in this order of precedence
 #' 1. hardcoded default values from `default_options.csv`
 #' 2. `fallback_values` arg (if set)
-#' 3. Fallback value in `controls.R` (if set)
 #'
 #' @param type The type of options to get, model or calibration
 #' @param iso3 The iso3 of the country to get options for
@@ -113,8 +112,6 @@ set_select_value <- function(control, default, fallback) {
     value <- default
   } else if (is_valid(fallback)) {
     value <- fallback
-  } else if (is_valid(control$value)) {
-    value <- control$value
   } else {
     value <- NULL
   }
@@ -135,8 +132,6 @@ set_multiselect_value <- function(control, default, fallback) {
     value <- default
   } else if (is_valid(fallback)) {
     value <- fallback
-  } else if (is_valid(control$value)) {
-    value <- control$value
   } else {
     value <- NULL
   }
