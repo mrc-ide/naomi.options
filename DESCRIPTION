@@ -18,7 +18,8 @@ Imports:
     glue,
     jsonlite,
     traduire (>= 0.0.5),
-Suggests: 
+Suggests:
+    jsonvalidate,
     testthat (>= 3.0.0),
     mockery
 Remotes:
