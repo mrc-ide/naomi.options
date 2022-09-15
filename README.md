@@ -43,6 +43,14 @@ When building the options from hintr the way this works is
 * To set an empty value you can use "" or just empty in the `default_options.csv`
 * To set multiple default values for multiselect controls separate the values with a `;` and any amount of whitespace e.g. `CMR2018DHS; CMR2017PHIA` or `CMR2018DHS;CMR2017PHIA` will work
 
+### Update schema for testing
+
+The package validates that the options for every country produces valid options. To do this we re-use the schema from hintr. This will need to be updated periodically if the schema changes by running the script
+
+```
+./scripts/copy_schemas
+```
+
 ## License
 
 MIT © Imperial College of Science, Technology and Medicine

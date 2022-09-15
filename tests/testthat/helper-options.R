@@ -10,6 +10,11 @@ build_test_options <- function(iso3, type, additional_values) {
       ## NULL options if numeric type
       return(NULL)
     }
+    if (!is.null(controls[[name]]$options) &&
+        length(controls[[name]]$options) > 1) {
+      ## If options are already set then keep these
+      return(controls[[name]]$options)
+    }
     vals <- default_values[[name]]
     opts <- list()
     if (all(nzchar(vals))) {
