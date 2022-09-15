@@ -48,7 +48,7 @@ When building the options from hintr the way this works is
 The package validates that the options for every country produces valid options. To do this we re-use the schema from hintr. This will need to be updated periodically if the schema changes by running the script
 
 ```
-./scripts/copy_schemas.py
+./scripts/copy_schemas
 ```
 
 ## License

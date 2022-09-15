@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+set -e
+curl https://raw.githubusercontent.com/mrc-ide/hintr/master/inst/schema/ModelRunOptions.schema.json > inst/schema/ModelRunOptions.schema.json
