@@ -97,6 +97,12 @@
 <li>To set multiple default values for multiselect controls separate the values with a <code>;</code> and any amount of whitespace e.g. <code>CMR2018DHS; CMR2017PHIA</code> or <code>CMR2018DHS;CMR2017PHIA</code> will work</li>
 </ul>
 </div>
+<div class="section level3">
+<h3 id="update-schema-for-testing">Update schema for testing<a class="anchor" aria-label="anchor" href="#update-schema-for-testing"></a>
+</h3>
+<p>The package validates that the options for every country produces valid options. To do this we re-use the schema from hintr. This will need to be updated periodically if the schema changes by running the script</p>
+<pre><code><span><span class="va">.</span><span class="op">/</span><span class="va">scripts</span><span class="op">/</span><span class="va">copy_schemas</span></span></code></pre>
+</div>
 </div>
 <div class="section level2">
 <h2 id="license">License<a class="anchor" aria-label="anchor" href="#license"></a>
