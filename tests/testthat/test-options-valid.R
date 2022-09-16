@@ -7,7 +7,9 @@ test_that("default options produce valid JSON", {
     for (type in types) {
       withCallingHandlers({
         options <- build_test_options(country, type, NULL)
-        model_options <- get_controls_json(type, country, options, NULL)
+        model_options <- get_controls_json(
+          type, country, options, NULL,
+          list(include_art = TRUE, include_anc = TRUE))
         expect_true(validator(model_options, error = TRUE))
       },
       error = function(e) {

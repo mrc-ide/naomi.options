@@ -54,63 +54,7 @@
         }
       ]
     },
-    {
-      "label": "t_(OPTIONS_ANC_LABEL)",
-      "description": "t_(OPTIONS_ANC_DESCRIPTION)",
-      "controlGroups": [
-        {
-          "label": "t_(OPTIONS_ANC_CLIENTS_LABEL)",
-          "controls": [
-            "<+anc_clients_year2+>"
-          ]
-        },
-        {
-          "label": "t_(OPTIONS_ANC_MONTHS_LABEL)",
-          "controls": [
-            "<+anc_clients_year2_num_months+>"
-          ]
-        },
-        {
-          "label": "t_(OPTIONS_ANC_PREVALENCE_LABEL)",
-          "controls": [
-            "<+anc_prevalence_year1+>",
-            "<+anc_prevalence_year2+>"
-          ]
-        },
-        {
-          "label": "t_(OPTIONS_ANC_COVERAGE_LABEL)",
-          "controls": [
-            "<+anc_art_coverage_year1+>",
-            "<+anc_art_coverage_year2+>"
-          ]
-        }
-      ]
-    },
-    {
-      "label": "t_(OPTIONS_ART_LABEL)",
-      "description": "t_(OPTIONS_ART_DESCRIPTION)",
-      "controlGroups": [
-        {
-          "label": "t_(OPTIONS_ART_INCLUDE_ART_LABEL)",
-          "controls": [
-            "<+include_art_t1+>",
-            "<+include_art_t2+>"
-          ]
-        },
-        {
-          "label": "t_(OPTIONS_ART_NEIGHBOURING_DISTRICT_LABEL)",
-          "controls": [
-            "<+artattend+>"
-          ]
-        },
-        {
-          "label": "t_(OPTIONS_ART_TIME_VARYING_ART_ATTEND_LABEL)",
-          "controls": [
-            "<+artattend_t2+>"
-          ]
-        }
-      ]
-    },
+    "<~optional_controls~>",
     {
       "label": "t_(OPTIONS_POPULATION_CALIBRATION_LABEL)",
       "description": "t_(OPTIONS_POPULATION_CALIBRATION_DESCRIPTION)",

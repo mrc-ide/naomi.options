@@ -1,0 +1,32 @@
+{
+  "label": "t_(OPTIONS_ANC_LABEL)",
+  "description": "t_(OPTIONS_ANC_DESCRIPTION)",
+  "controlGroups": [
+    {
+      "label": "t_(OPTIONS_ANC_CLIENTS_LABEL)",
+      "controls": [
+        "<+anc_clients_year2+>"
+      ]
+    },
+    {
+      "label": "t_(OPTIONS_ANC_MONTHS_LABEL)",
+      "controls": [
+        "<+anc_clients_year2_num_months+>"
+      ]
+    },
+    {
+      "label": "t_(OPTIONS_ANC_PREVALENCE_LABEL)",
+      "controls": [
+        "<+anc_prevalence_year1+>",
+        "<+anc_prevalence_year2+>"
+      ]
+    },
+    {
+      "label": "t_(OPTIONS_ANC_COVERAGE_LABEL)",
+      "controls": [
+        "<+anc_art_coverage_year1+>",
+        "<+anc_art_coverage_year2+>"
+      ]
+    }
+  ]
+}
