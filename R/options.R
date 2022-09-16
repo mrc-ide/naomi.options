@@ -86,6 +86,10 @@ build_model_template <- function(include_art, include_anc) {
   if (nzchar(optional_controls)) {
     optional_controls <- paste0(optional_controls, ",")
   }
+  ## This is kind of gross but we want a way to have the template be
+  ## valid JSON and also have the ability to not include any additional
+  ## controls if users do not upload ANC or ART data. So we match and replace
+  ## the trailing ,
   glue::glue(template, .open = '"<~', .close = '~>",')
 }
 
