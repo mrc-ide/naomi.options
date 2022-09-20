@@ -1,6 +1,6 @@
 build_test_options <- function(iso3, type, additional_values) {
   if (type == "model") {
-    controls <- get_model_controls()
+    controls <- get_model_controls(TRUE, TRUE)
   } else {
     controls <- get_calibration_controls()
   }
@@ -39,7 +39,7 @@ build_test_options <- function(iso3, type, additional_values) {
 }
 
 get_control <- function(options_json, name) {
-  for (control_section in options_json$controlSection) {
+  for (control_section in options_json$controlSections) {
     for (control_group in control_section$controlGroups) {
       for (control in control_group$controls) {
         if (control$name == name) {

@@ -24,22 +24,35 @@
 #' )
 #' @param fallback_values A list of names values to use as fallbacks if
 #' hardcoded defaults are invalid.
+#' @param config Additional configuration options for returned JSON. If
+#' type is 'model' can set boolean 'include_art' and 'include_anc' to
+#' include options for ART and ANC controls. No affect for 'calibration' type.
 #'
 #' @return The complete controls JSON
 #' @export
-get_controls_json <- function(type, iso3, options, fallback_values) {
+get_controls_json <- function(type, iso3, options, fallback_values,
+                              config = list()) {
   ## TODO: Assert inputs are sensible
   switch(type,
-         "model" = build_model_controls(iso3, options, fallback_values),
+         "model" = build_model_controls(iso3, options, fallback_values, config),
          "calibration" = build_calibration_controls(iso3, options,
                                                     fallback_values),
          stop(t_("OPTIONS_UNKNOWN_TYPE", list(type = type))))
 }
 
-build_model_controls <- function(iso3, options, fallback_values) {
-  template <- read_template("model_options.json")
+build_model_controls <- function(iso3, options, fallback_values, config) {
+  include_art <- config$include_art
+  if (!isTRUE(config$include_art)) {
+    include_art <- FALSE
+  }
+  include_anc <- config$include_anc
+  if (!isTRUE(config$include_anc)) {
+    include_anc <- FALSE
+  }
 
-  controls <- get_model_controls()
+  template <- build_model_template(include_art, include_anc)
+
+  controls <- get_model_controls(include_art, include_anc)
   controls <- set_options(controls, options)
 
   defaults <- read_hardcoded_defaults(iso3, controls)
@@ -60,7 +73,25 @@ build_calibration_controls <- function(iso3, options, fallback_values) {
   build_json(template, controls)
 }
 
-
+build_model_template <- function(include_art, include_anc) {
+  template <- read_template("model_options.json")
+  additional <- list()
+  if (include_anc) {
+    additional <- c(additional, read_template("anc_options.json"))
+  }
+  if (include_art) {
+    additional <- c(additional, read_template("art_options.json"))
+  }
+  optional_controls <- paste(additional, collapse = ",")
+  if (nzchar(optional_controls)) {
+    optional_controls <- paste0(optional_controls, ",")
+  }
+  ## This is kind of gross but we want a way to have the template be
+  ## valid JSON and also have the ability to not include any additional
+  ## controls if users do not upload ANC or ART data. So we match and replace
+  ## the trailing ,
+  glue::glue(template, .open = '"<~', .close = '~>",')
+}
 
 read_template <- function(file_name) {
   template <- paste(readLines(system_file(file_name)),

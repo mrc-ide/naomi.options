@@ -1,5 +1,5 @@
 test_that("read_hardcoded_defaults sets types from controls", {
-  controls <- get_model_controls()
+  controls <- get_model_controls(TRUE, TRUE)
   defaults <- read_hardcoded_defaults("CMR", controls)
 
   expect_type(defaults, "list")
@@ -26,7 +26,7 @@ test_that("read_hardcoded_defaults filters defaults to set of controls", {
 })
 
 test_that("read_hardcoded_defaults sets NA columns to empty string", {
-  controls <- get_model_controls()
+  controls <- get_model_controls(TRUE, TRUE)
   defaults <- read_hardcoded_defaults("AGO", controls)
 
   expect_equal(defaults$survey_art_coverage, "")

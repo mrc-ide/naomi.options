@@ -1,0 +1,25 @@
+{
+  "label": "t_(OPTIONS_ART_LABEL)",
+  "description": "t_(OPTIONS_ART_DESCRIPTION)",
+  "controlGroups": [
+    {
+      "label": "t_(OPTIONS_ART_INCLUDE_ART_LABEL)",
+      "controls": [
+        "<+include_art_t1+>",
+        "<+include_art_t2+>"
+      ]
+    },
+    {
+      "label": "t_(OPTIONS_ART_NEIGHBOURING_DISTRICT_LABEL)",
+      "controls": [
+        "<+artattend+>"
+      ]
+    },
+    {
+      "label": "t_(OPTIONS_ART_TIME_VARYING_ART_ATTEND_LABEL)",
+      "controls": [
+        "<+artattend_t2+>"
+      ]
+    }
+  ]
+}

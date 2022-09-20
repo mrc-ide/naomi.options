@@ -65,7 +65,7 @@ get_calibration_options <- function() {
   )
 }
 
-get_model_controls <- function() {
+get_model_controls <- function(include_art, include_anc) {
   yes_no_options <- list(
     list(
       id = "true",
@@ -128,7 +128,7 @@ get_model_controls <- function() {
     )
   )
 
-  list(
+  controls <- list(
     area_scope = control(
       name = "area_scope",
       type = "multiselect",
@@ -229,79 +229,6 @@ get_model_controls <- function() {
     survey_art_coverage = control(
       name = "survey_art_coverage",
       type = "multiselect",
-      required = FALSE
-    ),
-    include_art_t1 = control(
-      name = "include_art_t1",
-      label = "OPTIONS_T1_LABEL",
-      type = "select",
-      help_text = "OPTIONS_T1_HELP",
-      required = TRUE,
-      options = yes_no_options
-    ),
-    include_art_t2 = control(
-      name = "include_art_t2",
-      label = "OPTIONS_T2_LABEL",
-      type = "select",
-      help_text = "OPTIONS_T2_HELP",
-      required = TRUE,
-      options = yes_no_options
-    ),
-    artattend = control(
-      name = "artattend",
-      type = "select",
-      help_text = "OPTIONS_ART_NEIGHBOURING_DISTRICT_HELP",
-      required = TRUE,
-      options = yes_no_options
-    ),
-    artattend_t2 = control(
-      name = "artattend_t2",
-      type = "select",
-      help_text = "OPTIONS_ART_TIME_VARYING_ART_ATTEND_HELP",
-      required = TRUE,
-      options = yes_no_options
-    ),
-    anc_clients_year2 = control(
-      name = "anc_clients_year2",
-      label = "OPTIONS_T2_LABEL",
-      type = "select",
-      help_text = "OPTIONS_T2_HELP",
-      required = FALSE
-    ),
-    anc_clients_year2_num_months = control(
-      name = "anc_clients_year2_num_months",
-      label = "OPTIONS_T2_LABEL",
-      type = "select",
-      help_text = "OPTIONS_ANC_MONTHS_HELP",
-      required = TRUE,
-      options = month_options
-    ),
-    anc_prevalence_year1 = control(
-      name = "anc_prevalence_year1",
-      label = "OPTIONS_T1_LABEL",
-      type = "select",
-      help_text = "OPTIONS_T1_HELP",
-      required = FALSE
-    ),
-    anc_prevalence_year2 = control(
-      name = "anc_prevalence_year2",
-      label = "OPTIONS_T2_LABEL",
-      type = "select",
-      help_text = "OPTIONS_T2_HELP",
-      required = FALSE
-    ),
-    anc_art_coverage_year1 = control(
-      name = "anc_art_coverage_year1",
-      label = "OPTIONS_T1_LABEL",
-      type = "select",
-      help_text = "OPTIONS_T1_HELP",
-      required = FALSE
-    ),
-    anc_art_coverage_year2 = control(
-      name = "anc_art_coverage_year2",
-      label = "OPTIONS_T2_LABEL",
-      type = "select",
-      help_text = "OPTIONS_T2_HELP",
       required = FALSE
     ),
     spectrum_population_calibration = control(
@@ -424,6 +351,95 @@ get_model_controls <- function() {
       help_text = "OPTIONS_ADVANCED_DEFF_PROPORTION_RECENT_HELP"
     )
   )
+
+  if (include_anc) {
+    controls <- c(
+      controls,
+      list(
+        anc_clients_year2 = control(
+          name = "anc_clients_year2",
+          label = "OPTIONS_T2_LABEL",
+          type = "select",
+          help_text = "OPTIONS_T2_HELP",
+          required = FALSE
+        ),
+        anc_clients_year2_num_months = control(
+          name = "anc_clients_year2_num_months",
+          label = "OPTIONS_T2_LABEL",
+          type = "select",
+          help_text = "OPTIONS_ANC_MONTHS_HELP",
+          required = TRUE,
+          options = month_options
+        ),
+        anc_prevalence_year1 = control(
+          name = "anc_prevalence_year1",
+          label = "OPTIONS_T1_LABEL",
+          type = "select",
+          help_text = "OPTIONS_T1_HELP",
+          required = FALSE
+        ),
+        anc_prevalence_year2 = control(
+          name = "anc_prevalence_year2",
+          label = "OPTIONS_T2_LABEL",
+          type = "select",
+          help_text = "OPTIONS_T2_HELP",
+          required = FALSE
+        ),
+        anc_art_coverage_year1 = control(
+          name = "anc_art_coverage_year1",
+          label = "OPTIONS_T1_LABEL",
+          type = "select",
+          help_text = "OPTIONS_T1_HELP",
+          required = FALSE
+        ),
+        anc_art_coverage_year2 = control(
+          name = "anc_art_coverage_year2",
+          label = "OPTIONS_T2_LABEL",
+          type = "select",
+          help_text = "OPTIONS_T2_HELP",
+          required = FALSE
+        )
+      )
+    )
+  }
+  if (include_art) {
+    controls <- c(
+      controls,
+      list(
+        include_art_t1 = control(
+          name = "include_art_t1",
+          label = "OPTIONS_T1_LABEL",
+          type = "select",
+          help_text = "OPTIONS_T1_HELP",
+          required = TRUE,
+          options = yes_no_options
+        ),
+        include_art_t2 = control(
+          name = "include_art_t2",
+          label = "OPTIONS_T2_LABEL",
+          type = "select",
+          help_text = "OPTIONS_T2_HELP",
+          required = TRUE,
+          options = yes_no_options
+        ),
+        artattend = control(
+          name = "artattend",
+          type = "select",
+          help_text = "OPTIONS_ART_NEIGHBOURING_DISTRICT_HELP",
+          required = TRUE,
+          options = yes_no_options
+        ),
+        artattend_t2 = control(
+          name = "artattend_t2",
+          type = "select",
+          help_text = "OPTIONS_ART_TIME_VARYING_ART_ATTEND_HELP",
+          required = TRUE,
+          options = yes_no_options
+        )
+      )
+    )
+  }
+  controls
 }
 
 get_calibration_controls <- function() {
