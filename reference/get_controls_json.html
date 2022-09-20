@@ -3,7 +3,6 @@
 country. The control info will be filled in in this order of precedence
 hardcoded default values from default_options.csv
 fallback_values arg (if set)
-Fallback value in controls.R (if set)
 
 "><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -23,7 +22,7 @@ Fallback value in controls.R (if set)
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">naomi.options</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.1</span>
       </span>
     </div>
 
@@ -55,11 +54,10 @@ Fallback value in controls.R (if set)
     <p>This gets the JSON for the model or calibration options for a particular
 country. The control info will be filled in in this order of precedence</p><ol><li><p>hardcoded default values from <code>default_options.csv</code></p></li>
 <li><p><code>fallback_values</code> arg (if set)</p></li>
-<li><p>Fallback value in <code>controls.R</code> (if set)</p></li>
 </ol></div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">get_controls_json</span><span class="op">(</span><span class="va">type</span>, <span class="va">iso3</span>, <span class="va">options</span>, <span class="va">fallback_values</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">get_controls_json</span><span class="op">(</span><span class="va">type</span>, <span class="va">iso3</span>, <span class="va">options</span>, <span class="va">fallback_values</span>, config <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -93,6 +91,12 @@ label = "two"
 <dt>fallback_values</dt>
 <dd><p>A list of names values to use as fallbacks if
 hardcoded defaults are invalid.</p></dd>
+
+
+<dt>config</dt>
+<dd><p>Additional configuration options for returned JSON. If
+type is 'model' can set boolean 'include_art' and 'include_anc' to
+include options for ART and ANC controls. No affect for 'calibration' type.</p></dd>
 
 </dl></div>
     <div id="value">
