@@ -97,5 +97,12 @@
   "OPTIONS_RECENTLY_INFECTED_LABEL": "Utilisez les données d'enquête sur la proportion de personnes récemment infectée",
   "OPTIONS_ADVANCED_DEFF_PREVALENCE_LABEL": "Enquête design éffet - Prévalence du VIH",
   "OPTIONS_ADVANCED_DEFF_ART_COVERAGE_LABEL": "Enquête design éffet - Couverture TARV",
-  "OPTIONS_ADVANCED_DEFF_PROPORTION_RECENT_LABEL": "Enquête design éffet - Proportion de personnes récemment infectées"
+  "OPTIONS_ADVANCED_DEFF_PROPORTION_RECENT_LABEL": "Enquête design éffet - Proportion de personnes récemment infectées",
+  "OPTIONS_CALIBRATION_ADJUST_TO_SPECTRUM_POPULATION_HELP": "Étalonner selon la taille de la population de Spectrum par sexe et groupe d'âge de 5 années au niveau national ou infranational. Si le fichier Spectrum est national, National et Infranational donneront le même résultat.",
+  "OPTIONS_ADVANCED_OUTPUT_AWARE_HELP": "Le calcul de la connaissance des indicateurs de statut VIH nécessite l'inclusion de fichiers .shiny90 dans chaque PJNZ. Si les fichiers .shiny90 ne sont pas disponibles, sélectionnez «Non» pour procéder à l'ajustement du modèle.",
+  "OPTIONS_ANC_MONTHS_HELP": "Nombre de mois inclus dans reportage des cliniques prénatales cette année",
+  "OPTIONS_T1_HELP": "Année correspondant au point médian de l'enquête",
+  "OPTIONS_T2_HELP": "Année pour laquelle les estimations doivent être générées",
+  "OPTIONS_ART_NEIGHBOURING_DISTRICT_HELP": "Proportion modèle de résidents sous TARV soignés dans les districts voisins",
+  "OPTIONS_ART_TIME_VARYING_ART_ATTEND_HELP": "Permettre à la probabilité de demander un traitement dans les districts voisins de changer avec le temps"
 }
