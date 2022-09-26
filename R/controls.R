@@ -65,6 +65,40 @@ get_calibration_options <- function() {
   )
 }
 
+get_age_stratification_options <- function() {
+  list(
+    list(
+      id = "age_coarse",
+      label = t_("OPTIONS_CALIBRATION_ADJUST_TO_SPECTRUM_AGE_COARSE_LABEL")
+    ),
+    list(
+      id = "sex_age_coarse",
+      label = t_("OPTIONS_CALIBRATION_ADJUST_TO_SPECTRUM_SEX_AGE_COARSE_LABEL")
+    ),
+    list(
+      id = "age_group",
+      label = t_("OPTIONS_CALIBRATION_ADJUST_TO_SPECTRUM_AGE_GROUP_LABEL")
+    ),
+    list(
+      id = "sex_age_group",
+      label = t_("OPTIONS_CALIBRATION_ADJUST_TO_SPECTRUM_SEX_AGE_GROUP_LABEL")
+    )
+  )
+}
+
+get_calibrate_method_options <- function() {
+  list(
+    list(
+      id = "logistic",
+      label = t_("OPTIONS_CALIBRATE_METHOD_LOGISTIC_LABEL")
+    ),
+    list(
+      id = "proportional",
+      label = t_("OPTIONS_CALIBRATE_METHOD_PROPORTIONAL_LABEL")
+    )
+  )
+}
+
 get_model_controls <- function(include_art, include_anc) {
   yes_no_options <- list(
     list(
@@ -444,25 +478,7 @@ get_model_controls <- function(include_art, include_anc) {
 
 get_calibration_controls <- function() {
   calibration_level_opts <- get_calibration_options()
-
-  age_strat_opts <- list(
-    list(
-      id = "age_coarse",
-      label = t_("OPTIONS_CALIBRATION_ADJUST_TO_SPECTRUM_AGE_COARSE_LABEL")
-    ),
-    list(
-      id = "sex_age_coarse",
-      label = t_("OPTIONS_CALIBRATION_ADJUST_TO_SPECTRUM_SEX_AGE_COARSE_LABEL")
-    ),
-    list(
-      id = "age_group",
-      label = t_("OPTIONS_CALIBRATION_ADJUST_TO_SPECTRUM_AGE_GROUP_LABEL")
-    ),
-    list(
-      id = "sex_age_group",
-      label = t_("OPTIONS_CALIBRATION_ADJUST_TO_SPECTRUM_SEX_AGE_GROUP_LABEL")
-    )
-  )
+  age_strat_opts <- get_age_stratification_options()
 
   list(
     spectrum_plhiv_calibration_level = control(
@@ -541,16 +557,7 @@ get_calibration_controls <- function() {
       name = "calibrate_method",
       type = "select",
       required = TRUE,
-      options = list(
-        list(
-          id = "logistic",
-          label = t_("OPTIONS_CALIBRATE_METHOD_LOGISTIC_LABEL")
-        ),
-        list(
-          id = "proportional",
-          label = t_("OPTIONS_CALIBRATE_METHOD_PROPORTIONAL_LABEL")
-        )
-      )
+      options = get_calibrate_method_options()
     )
   )
 }
