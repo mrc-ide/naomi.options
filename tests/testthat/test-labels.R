@@ -1,12 +1,12 @@
 test_that("can get model calibration options label from ID", {
   options <- list(spectrum_population_calibration_level = "subnational",
-                  spectrum_plhiv_calibration_strat = "sex_age_group" ,
+                  spectrum_plhiv_calibration_strat = "sex_age_group",
                   spectrum_artnum_calibration_level = "none",
                   spectrum_artnum_calibration_strat = "age_coarse",
                   spectrum_aware_calibration_level = "none",
                   spectrum_aware_calibration_strat = "age_coarse",
                   spectrum_infections_calibration_level = "none",
-                  spectrum_infections_calibration_strat ="age_coarse",
+                  spectrum_infections_calibration_strat = "age_coarse",
                   calibrate_method = "logistic")
   options_map <- get_calibration_option_labels(options)
 
@@ -19,7 +19,7 @@ test_that("can get model calibration options label from ID", {
     spectrum_aware_calibration_level = "None",
     spectrum_aware_calibration_strat = "Age <15 / 15+",
     spectrum_infections_calibration_level = "None",
-    spectrum_infections_calibration_strat ="Age <15 / 15+",
+    spectrum_infections_calibration_strat = "Age <15 / 15+",
     calibrate_method = "Logistic"))
 })
 
