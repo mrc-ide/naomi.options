@@ -104,5 +104,6 @@
   "OPTIONS_T1_HELP": "Année correspondant au point médian de l'enquête",
   "OPTIONS_T2_HELP": "Année pour laquelle les estimations doivent être générées",
   "OPTIONS_ART_NEIGHBOURING_DISTRICT_HELP": "Proportion modèle de résidents sous TARV soignés dans les districts voisins",
-  "OPTIONS_ART_TIME_VARYING_ART_ATTEND_HELP": "Permettre à la probabilité de demander un traitement dans les districts voisins de changer avec le temps"
+  "OPTIONS_ART_TIME_VARYING_ART_ATTEND_HELP": "Permettre à la probabilité de demander un traitement dans les districts voisins de changer avec le temps",
+  "CALIBRATION_LABEL_FAILED": "Impossible de trouver une option de calibration avec le nom {{option_name}} et l'id {{value}}"
 }

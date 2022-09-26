@@ -104,5 +104,6 @@
   "OPTIONS_RECENTLY_INFECTED_LABEL": "Use survey data on proportion recently infected",
   "OPTIONS_ADVANCED_DEFF_PREVALENCE_LABEL": "Survey design effect - HIV prevalence",
   "OPTIONS_ADVANCED_DEFF_ART_COVERAGE_LABEL": "Survey design effect - ART coverage",
-  "OPTIONS_ADVANCED_DEFF_PROPORTION_RECENT_LABEL": "Survey design effect - Proportion recently infected"
+  "OPTIONS_ADVANCED_DEFF_PROPORTION_RECENT_LABEL": "Survey design effect - Proportion recently infected",
+  "CALIBRATION_LABEL_FAILED": "Failed to find calibration option label with name '{{control_name}}' and id '{{value}}'."
 }

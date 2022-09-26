@@ -104,5 +104,6 @@
   "OPTIONS_T1_HELP": "Ano correspondente no ponto médio do inquérito",
   "OPTIONS_T2_HELP": "Ano para gerar estimativas para",
   "OPTIONS_ART_NEIGHBOURING_DISTRICT_HELP": "Proporção modelo de residentes em TARV que procuram tratamento em distritos vizinhos",
-  "OPTIONS_ART_TIME_VARYING_ART_ATTEND_HELP": "Permitir que as probabilidades de procurar tratamento no distrito vizinho mudem ao longo do tempo."
+  "OPTIONS_ART_TIME_VARYING_ART_ATTEND_HELP": "Permitir que as probabilidades de procurar tratamento no distrito vizinho mudem ao longo do tempo.",
+  "CALIBRATION_LABEL_FAILED": "Falha em encontrar a opção de calibração com nome {{option_name}} e id {{value}}"
 }
