@@ -38,12 +38,24 @@ When building the options from hintr the way this works is
 1. naomi.options takes the completed set of controls, serializes them to JSON and embeds them in the options json from `inst/model_options.json` or `inst/calibration_options.json` and returns to hintr
 1. hintr returns json back as response
 
-### Notes
+## Change the default value of a control
 
+Update the `inst/default_options.csv`. There is a row for each country and a column with the ID of the control. Note
 * To set an empty value you can use "" or just empty in the `default_options.csv`
 * To set multiple default values for multiselect controls separate the values with a `;` and any amount of whitespace e.g. `CMR2018DHS; CMR2017PHIA` or `CMR2018DHS;CMR2017PHIA` will work
 
-### Update schema for testing
+After making any changes run the tests, this will check that the value added is valid and of the correct value for the type.
+
+## Add a new control
+
+To add a new control requires a few steps
+1. Add the control to the list of controls in either `get_model_controls()` or `get_calibration_controls()` in `R/controls.R`. Adding it as a `control()` will validate that the control specification is well formed
+1. Add it into the json template. This sets where the control is shown on the options page relative to the other controls. Add it to either `inst/anc_options.json`, `inst/art_options.json`, `inst/model_options.json` or `inst/calibration_options.json`. You may need to add a new label or control group. To add the control itself use the name added in step 1 as `"<+control_name+>"`. This string then gets matched and replaced with the control specification from step 1. Comparing this JSON to the options in the app is often the easiest way to see what the different labels and descriptions do but ask Rob if any questions.
+1. Set default value, add a new column to `inst/default_options.csv` and set values for each country.
+1. Add traduire strings for any label, description or help text added
+1. If the new control is a "select" or "multiselect" type where the possible options come from the data then this data will need to be prepared and sent in call to `naomi.options`. Talk to Rob and ask him to do this.
+
+## Update schema for testing
 
 The package validates that the options for every country produces valid options. To do this we re-use the schema from hintr. This will need to be updated periodically if the schema changes by running the script
 
