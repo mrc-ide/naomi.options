@@ -66,6 +66,7 @@
 <div class="page-header"><h1 id="naomioptions">naomi.options<a class="anchor" aria-label="anchor" href="#naomioptions"></a>
 </h1></div>
 <!-- badges: start -->
+
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
@@ -88,21 +89,23 @@
 <p><img src="diagram/logic.png?raw=true"></p>
 <p>There are 2 possible sources for default values, in order of precedence * <code>default_options.csv</code> * <code>fallback_values</code> coming from the data</p>
 <p>When building the options from hintr the way this works is 1. hintr receives a request to return options with paths to files 1. hintr reads files and pulls out options and default values from the data 1. hintr calls naomi.options <code>get_controls_json</code> with the <code>iso3</code> the <code>options</code> from the data and <code>fallback_values</code> from the data. Note the <code>options</code> and <code>fallback_values</code> can be empty and indeed are for calibrate options 1. naomi.options reads the controls from <code>controls.R</code> for this type, and adds any <code>options</code> passed as an arg into this list for each <code>control</code> 1. naomi.options reads the default values from <code>default_options.csv</code> 1. For each control, naomi.options checks if csv value is valid and if it is sets this as the <code>value</code> for the control. If it is invalid it checks if there is a default in the <code>fallback_values</code> if not uses an empty default <code>value</code> 1. naomi.options takes the completed set of controls, serializes them to JSON and embeds them in the options json from <code>inst/model_options.json</code> or <code>inst/calibration_options.json</code> and returns to hintr 1. hintr returns json back as response</p>
-<div class="section level3">
-<h3 id="notes">Notes<a class="anchor" aria-label="anchor" href="#notes"></a>
-</h3>
-<ul>
-<li>To set an empty value you can use "" or just empty in the <code>default_options.csv</code>
-</li>
-<li>To set multiple default values for multiselect controls separate the values with a <code>;</code> and any amount of whitespace e.g. <code>CMR2018DHS; CMR2017PHIA</code> or <code>CMR2018DHS;CMR2017PHIA</code> will work</li>
-</ul>
 </div>
-<div class="section level3">
-<h3 id="update-schema-for-testing">Update schema for testing<a class="anchor" aria-label="anchor" href="#update-schema-for-testing"></a>
-</h3>
+<div class="section level2">
+<h2 id="change-the-default-value-of-a-control">Change the default value of a control<a class="anchor" aria-label="anchor" href="#change-the-default-value-of-a-control"></a>
+</h2>
+<p>Update the <code>inst/default_options.csv</code>. There is a row for each country and a column with the ID of the control. Note * To set an empty value you can use “” or just empty in the <code>default_options.csv</code> * To set multiple default values for multiselect controls separate the values with a <code>;</code> and any amount of whitespace e.g. <code>CMR2018DHS; CMR2017PHIA</code> or <code>CMR2018DHS;CMR2017PHIA</code> will work</p>
+<p>After making any changes run the tests, this will check that the value added is valid and of the correct value for the type.</p>
+</div>
+<div class="section level2">
+<h2 id="add-a-new-control">Add a new control<a class="anchor" aria-label="anchor" href="#add-a-new-control"></a>
+</h2>
+<p>To add a new control requires a few steps 1. Add the control to the list of controls in either <code>get_model_controls()</code> or <code>get_calibration_controls()</code> in <code>R/controls.R</code>. Adding it as a <code>control()</code> will validate that the control specification is well formed 1. Add it into the json template. This sets where the control is shown on the options page relative to the other controls. Add it to either <code>inst/anc_options.json</code>, <code>inst/art_options.json</code>, <code>inst/model_options.json</code> or <code>inst/calibration_options.json</code>. You may need to add a new label or control group. To add the control itself use the name added in step 1 as <code>"&lt;+control_name+&gt;"</code>. This string then gets matched and replaced with the control specification from step 1. Comparing this JSON to the options in the app is often the easiest way to see what the different labels and descriptions do but ask Rob if any questions. 1. Set default value, add a new column to <code>inst/default_options.csv</code> and set values for each country. 1. Add traduire strings for any label, description or help text added 1. If the new control is a “select” or “multiselect” type where the possible options come from the data then this data will need to be prepared and sent in call to <code>naomi.options</code>. Talk to Rob and ask him to do this.</p>
+</div>
+<div class="section level2">
+<h2 id="update-schema-for-testing">Update schema for testing<a class="anchor" aria-label="anchor" href="#update-schema-for-testing"></a>
+</h2>
 <p>The package validates that the options for every country produces valid options. To do this we re-use the schema from hintr. This will need to be updated periodically if the schema changes by running the script</p>
 <pre><code><span><span class="va">.</span><span class="op">/</span><span class="va">scripts</span><span class="op">/</span><span class="va">copy_schemas</span></span></code></pre>
-</div>
 </div>
 <div class="section level2">
 <h2 id="license">License<a class="anchor" aria-label="anchor" href="#license"></a>
