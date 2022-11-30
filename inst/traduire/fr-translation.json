@@ -41,7 +41,7 @@
   "OPTIONS_ADVANCED_NO_OF_SIMULATIONS_HELP": "Nombre de simulations pour la génération de fourchettes d'incertitude",
   "OPTIONS_ADVANCED_SIMULATION_SEED_HELP": "Graine génératrice de nombres aléatoires pour l'échantillon d'incertitude",
   "OPTIONS_ADVANCED_LOGIT_HELP": "Compensation logit relative aux chances d'obtenir un TARV dans le district voisin par rapport au district de résidence",
-    "OPTIONS_ADVANCED_ANCHOR_ART_ATTEND_HELP": "Specify ART attending random effect for residents and neighbours",
+  "OPTIONS_ADVANCED_ANCHOR_ART_ATTEND_HELP": "Specify ART attending random effect for residents and neighbours",
   "OPTIONS_USE_SURVEY_AGGREGATE_HELP": "L'ensemble de données d'enquête téléchargé doit être sous-défini exactement aux données à utiliser dans le calibrage du modèle.",
   "OPTIONS_ADVANCED_USE_KISH_HELP": "Utiliser taille effective de l'échantillon (ESS) Kish pour la probabilité des données d'enquête",
   "OPTIONS_ADVANCED_DEFF_PREVALENCE_HELP": "DEFF approximatif pour ajuster la taille effective de l'échantillon de l'enquête sur les observations prevelance de VIH",
