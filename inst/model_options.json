@@ -104,6 +104,12 @@
           ]
         },
         {
+          "label": "t_(OPTIONS_ADVANCED_ANCHOR_ART_ATTEND_LABEL)",
+          "controls": [
+            "<+anchor_home_district+>"
+          ]
+        },
+        {
           "label": "t_(OPTIONS_ADVANCED_SPATIAL_PAED_PREVALENCE)",
           "controls": [
             "<+rho_paed_x_term+>"

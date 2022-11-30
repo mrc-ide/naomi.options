@@ -303,6 +303,12 @@ get_model_controls <- function(include_art, include_anc) {
       help_text = "OPTIONS_ADVANCED_LOGIT_HELP",
       required = TRUE
     ),
+    anchor_home_district = control(
+      name = "anchor_home_district",
+      type = "select",
+      required = TRUE,
+      options = yes_no_options
+    ),
     rho_paed_x_term = control(
       name = "rho_paed_x_term",
       type = "select",
