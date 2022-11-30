@@ -41,7 +41,7 @@
   "OPTIONS_ADVANCED_NO_OF_SIMULATIONS_HELP": "Número de simulações para gerar intervalos de incerteza",
   "OPTIONS_ADVANCED_SIMULATION_SEED_HELP": "Semente geradora de números aleatórios para amostra de incerteza",
   "OPTIONS_ADVANCED_LOGIT_HELP": "Compensação Logit para as probabilidades de obter TARV no distrito vizinho em comparação com o distrito de origem",
-    "OPTIONS_ADVANCED_ANCHOR_ART_ATTEND_HELP": "Specify ART attending random effect for residents and neighbours",
+  "OPTIONS_ADVANCED_ANCHOR_ART_ATTEND_HELP": "Specify ART attending random effect for residents and neighbours",
   "OPTIONS_USE_SURVEY_AGGREGATE_HELP": "O conjunto de dados do inquérito carregado deve ser subdividido exatamente de acordo com os dados a serem usados na calibração do modelo.",
   "OPTIONS_ADVANCED_USE_KISH_HELP": "Usar Kish Effective Sample Size (ESS) para a probabilidade dos dados do inquérito",
   "OPTIONS_ADVANCED_DEFF_PREVALENCE_HELP": "DEFF aproximado para dimensionar o tamanho efetivo da amostra para o inquérito de observações da prevalência de VIH",
