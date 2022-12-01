@@ -1,6 +1,6 @@
 Package: naomi.options
 Title: Contains model and calibration options and helper functions for Naomi
-Version: 0.1.2
+Version: 0.1.3
 Authors@R: 
     person(given = "Robert", 
            family = "Ashton", 
@@ -15,6 +15,7 @@ URL: https://github.com/mrc-ide/naomi.options
 BugReports: https://github.com/mrc-ide/naomi.options/issues
 Additional_repositories: https://mrc-ide.r-universe.dev
 Imports:
+    data.table,
     glue,
     jsonlite,
     traduire (>= 0.0.5),
