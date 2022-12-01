@@ -306,6 +306,7 @@ get_model_controls <- function(include_art, include_anc) {
     anchor_home_district = control(
       name = "anchor_home_district",
       type = "select",
+      help_text = "OPTIONS_ADVANCED_ANCHOR_ART_ATTEND_HELP",
       required = TRUE,
       options = yes_no_options
     ),
