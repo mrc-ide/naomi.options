@@ -43,6 +43,7 @@ When building the options from hintr the way this works is
 Update the `inst/default_options.csv`. There is a row for each country and a column with the ID of the control. Note
 * To set an empty value you can use "" or just empty in the `default_options.csv`
 * To set multiple default values for multiselect controls separate the values with a `;` and any amount of whitespace e.g. `CMR2018DHS; CMR2017PHIA` or `CMR2018DHS;CMR2017PHIA` will work
+* To set a value to use the default from the data overrides set the cell to `NA`
 
 After making any changes run the tests, this will check that the value added is valid and of the correct value for the type.
 

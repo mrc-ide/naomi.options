@@ -202,8 +202,11 @@ describe("model options can exclude ANC and include ART options", {
 
 
 describe("when getting controls for unknown country", {
-  mwi_options <- build_test_options("MWI", "model", NULL)
-  json <- get_controls_json("model", "UNK", mwi_options, NULL)
+  data_values <- list(
+    area_scope = "SSD"
+  )
+  options <- build_test_options("MWI", "model", data_values)
+  json <- get_controls_json("model", "UNK", options, data_values)
   out <- jsonlite::fromJSON(json, simplifyVector = FALSE)
 
   it("returns data", {
@@ -217,6 +220,85 @@ describe("when getting controls for unknown country", {
 
   it("has no value for country specific options", {
     area_scope <- get_control(out, "area_scope")
-    expect_equal(area_scope$value, "")
+    expect_equal(area_scope$value, "SSD")
   })
+})
+
+test_that("setting select values works", {
+  control <- list(
+    name = "name",
+    type = "select",
+    required = TRUE,
+    options = list(
+      list(
+        id = "op1",
+        label = "op1"
+      ),
+      list(
+        id = "op2",
+        label = "op2"
+      )
+    )
+  )
+  expect_equal(
+    set_select_value(control, "", "op1"),
+    "")
+  expect_equal(
+    set_select_value(control, NA, "op1"),
+    "op1")
+  expect_equal(
+    set_select_value(control, NA, "other"),
+    NULL)
+  expect_equal(
+    set_select_value(control, NULL, "op1"),
+    "op1")
+  expect_equal(
+    set_select_value(control, "op1", "op2"),
+    "op1")
+  expect_null(
+    set_select_value(control, "another", "123"))
+})
+
+test_that("setting multiselect values works", {
+  control <- list(
+    name = "name",
+    type = "multiselect",
+    required = TRUE,
+    options = list(
+      list(
+        id = "op1",
+        label = "op1"
+      ),
+      list(
+        id = "op2",
+        label = "op2"
+      )
+    )
+  )
+  expect_equal(
+    set_multiselect_value(control, "", "op1"),
+    "")
+  expect_equal(
+    set_multiselect_value(control, NA, "op1"),
+    "op1")
+  expect_equal(
+    set_multiselect_value(control, NA, "other"),
+    NULL)
+  expect_equal(
+    set_multiselect_value(control, NULL, "op1"),
+    "op1")
+  expect_equal(
+    set_multiselect_value(control, NULL, "other"),
+    NULL)
+  expect_equal(
+    set_multiselect_value(control, NULL, c("op1", "op2")),
+    c("op1", "op2"))
+  expect_equal(
+    set_multiselect_value(control, "op1", "op2"),
+    "op1")
+  expect_equal(
+    set_multiselect_value(control, c("op1", "op2"), "op2"),
+    c("op1", "op2"))
+  expect_null(
+    set_multiselect_value(control, "another", "123"))
 })

@@ -23,15 +23,12 @@ convert_types <- function(data, controls) {
 }
 
 as_select <- function(value) {
-  if (is.na(value)) {
-    return("")
-  }
   as.character(value)
 }
 
 as_multiselect <- function(value) {
   if (is.na(value) || value == "") {
-    return("")
+    return(as.character(value))
   }
   strsplit(as.character(value), "; *")[[1]]
 }
@@ -47,11 +44,8 @@ read_default_options <- function() {
     nThread = 1
   )
   integer_cols <- c(
-    "area_level", "anc_clients_year2", "anc_clients_year2_num_months",
-    "anc_prevalence_year1", "anc_prevalence_year2", "anc_art_coverage_year1",
-    "anc_art_coverage_year2", "max_iterations", "no_of_samples", "rng_seed",
-    "artattend_log_gamma_offset", "deff_prev", "deff_artcov", "deff_recent",
-    "deff_vls")
+    "max_iterations", "no_of_samples", "rng_seed", "artattend_log_gamma_offset",
+    "deff_prev", "deff_artcov", "deff_recent", "deff_vls")
   truthy_cols <- c(
     "use_survey_aggregate", "include_art_t1", "include_art_t2", "artattend",
     "artattend_t2", "output_aware_plhiv", "permissive", "use_kish_prev",
