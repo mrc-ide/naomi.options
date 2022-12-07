@@ -257,6 +257,9 @@ test_that("setting select values works", {
     "op1")
   expect_null(
     set_select_value(control, "another", "123"))
+  expect_equal(
+    set_select_value(control, NA, c("op1", "op2")),
+    "op1")
 })
 
 test_that("setting multiselect values works", {
@@ -301,4 +304,23 @@ test_that("setting multiselect values works", {
     c("op1", "op2"))
   expect_null(
     set_multiselect_value(control, "another", "123"))
+})
+
+test_that("setting number values works", {
+  control <- list(
+    name = "name",
+    type = "number",
+    required = TRUE
+  )
+  expect_equal(
+    set_number_value(control, NA, 1),
+    1)
+  expect_equal(
+    set_number_value(control, NA, c(1, 2)),
+    1)
+  expect_equal(
+    set_number_value(control, 1, 2),
+    1)
+  expect_null(
+    set_number_value(control, NA, NA))
 })

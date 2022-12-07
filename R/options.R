@@ -143,8 +143,8 @@ set_select_value <- function(control, default, fallback) {
   }
   if (is_valid(default)) {
     value <- default
-  } else if (is_valid(fallback)) {
-    value <- fallback
+  } else if (is_valid(fallback[[1]])) {
+    value <- fallback[[1]]
   } else {
     value <- NULL
   }
@@ -176,8 +176,8 @@ set_number_value <- function(control, default, fallback) {
   is_valid <- function(x) !is.null(x) && !is.na(x)
   if (is_valid(default)) {
     value <- default
-  } else if (is_valid(fallback)) {
-    value <- fallback
+  } else if (is_valid(fallback[[1]])) {
+    value <- fallback[[1]]
   } else {
     value <- NULL
   }
