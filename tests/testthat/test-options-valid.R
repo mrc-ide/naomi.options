@@ -2,6 +2,8 @@ test_that("default options produce valid JSON", {
   validator <- jsonvalidate::json_validator(
     system_file("schema", "ModelRunOptions.schema.json"))
   countries <- read.csv(system_file("default_options.csv"))$iso3
+  ## We do not have defaults for all values for fallback so do not test this
+  countries <- countries[countries != "fallback"]
   types <- c("model", "calibration")
   for (country in countries) {
     for (type in types) {

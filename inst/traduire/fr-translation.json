@@ -1,6 +1,5 @@
 {
   "OPTIONS_UNKNOWN_TYPE": "Failed to get options for type '{{type}}' speak to a system administrator",
-  "FAILED_DEFAULT_OPTIONS_ISO3": "Failed to get default options for iso3 '{{iso3}}' speak to a system administrator",
   "MODEL_OPTIONS_FAIL": "Échec de la construction des options de modèle à partir du modèle et des paramètres : {{message}}",
   "FAILED_TO_SET_OPTIONS": "Failed to find any valid options for control '{{control}}' speak to a system administrator",
   "MONTH_MARCH": "Mars",

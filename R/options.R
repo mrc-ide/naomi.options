@@ -138,11 +138,13 @@ set_values <- function(controls, defaults, fallback_values) {
 set_select_value <- function(control, default, fallback) {
   possible_ids <- lapply(control$options, "[[", "id")
   ## Valid if not set (e.g. empty string) or it is a possible ID
-  is_valid <- function(x) !is.null(x) && (x == "" || x %in% possible_ids)
+  is_valid <- function(x) {
+    !is.na(x) && !is.null(x) && (x == "" || x %in% possible_ids)
+  }
   if (is_valid(default)) {
     value <- default
-  } else if (is_valid(fallback)) {
-    value <- fallback
+  } else if (is_valid(fallback[[1]])) {
+    value <- fallback[[1]]
   } else {
     value <- NULL
   }
@@ -170,8 +172,14 @@ set_multiselect_value <- function(control, default, fallback) {
 }
 
 set_number_value <- function(control, default, fallback) {
-  ## For number type, we convert types read from default csv and error
-  ## early if of wrong type. So it should always be valid at this point
-  ## and we don't need to fallback.
-  default
+  ## For number type, valid as long as not NULL or NA
+  is_valid <- function(x) !is.null(x) && !is.na(x)
+  if (is_valid(default)) {
+    value <- default
+  } else if (is_valid(fallback[[1]])) {
+    value <- fallback[[1]]
+  } else {
+    value <- NULL
+  }
+  value
 }

@@ -14,11 +14,6 @@ test_that("get_controls_json returns useful error if type unknown", {
                "Failed to get options for type 'test'")
 })
 
-test_that("get_controls_json returns useful error if country unknown", {
-  expect_error(get_controls_json("calibration", "123", list(), list()),
-               "Failed to get default options for iso3 '123'")
-})
-
 test_that("get_controls_json returns useful error when options are missing", {
   expect_error(get_controls_json("model", "MWI", list(), list()),
                paste0("Failed to find any valid options for control ",
@@ -203,4 +198,129 @@ describe("model options can exclude ANC and include ART options", {
   it("includes ART options", {
     expect_true(!is.null(get_control(out, "include_art_t1")))
   })
+})
+
+
+describe("when getting controls for unknown country", {
+  data_values <- list(
+    area_scope = "SSD"
+  )
+  options <- build_test_options("MWI", "model", data_values)
+  json <- get_controls_json("model", "UNK", options, data_values)
+  out <- jsonlite::fromJSON(json, simplifyVector = FALSE)
+
+  it("returns data", {
+    expect_true(length(out) > 0)
+  })
+
+  it("has fallback defaults for non country specific options", {
+    calendar_quarter_t2 <- get_control(out, "calendar_quarter_t2")
+    expect_equal(calendar_quarter_t2$value, "CY2022Q3")
+  })
+
+  it("has no value for country specific options", {
+    area_scope <- get_control(out, "area_scope")
+    expect_equal(area_scope$value, "SSD")
+  })
+})
+
+test_that("setting select values works", {
+  control <- list(
+    name = "name",
+    type = "select",
+    required = TRUE,
+    options = list(
+      list(
+        id = "op1",
+        label = "op1"
+      ),
+      list(
+        id = "op2",
+        label = "op2"
+      )
+    )
+  )
+  expect_equal(
+    set_select_value(control, "", "op1"),
+    "")
+  expect_equal(
+    set_select_value(control, NA, "op1"),
+    "op1")
+  expect_equal(
+    set_select_value(control, NA, "other"),
+    NULL)
+  expect_equal(
+    set_select_value(control, NULL, "op1"),
+    "op1")
+  expect_equal(
+    set_select_value(control, "op1", "op2"),
+    "op1")
+  expect_null(
+    set_select_value(control, "another", "123"))
+  expect_equal(
+    set_select_value(control, NA, c("op1", "op2")),
+    "op1")
+})
+
+test_that("setting multiselect values works", {
+  control <- list(
+    name = "name",
+    type = "multiselect",
+    required = TRUE,
+    options = list(
+      list(
+        id = "op1",
+        label = "op1"
+      ),
+      list(
+        id = "op2",
+        label = "op2"
+      )
+    )
+  )
+  expect_equal(
+    set_multiselect_value(control, "", "op1"),
+    "")
+  expect_equal(
+    set_multiselect_value(control, NA, "op1"),
+    "op1")
+  expect_equal(
+    set_multiselect_value(control, NA, "other"),
+    NULL)
+  expect_equal(
+    set_multiselect_value(control, NULL, "op1"),
+    "op1")
+  expect_equal(
+    set_multiselect_value(control, NULL, "other"),
+    NULL)
+  expect_equal(
+    set_multiselect_value(control, NULL, c("op1", "op2")),
+    c("op1", "op2"))
+  expect_equal(
+    set_multiselect_value(control, "op1", "op2"),
+    "op1")
+  expect_equal(
+    set_multiselect_value(control, c("op1", "op2"), "op2"),
+    c("op1", "op2"))
+  expect_null(
+    set_multiselect_value(control, "another", "123"))
+})
+
+test_that("setting number values works", {
+  control <- list(
+    name = "name",
+    type = "number",
+    required = TRUE
+  )
+  expect_equal(
+    set_number_value(control, NA, 1),
+    1)
+  expect_equal(
+    set_number_value(control, NA, c(1, 2)),
+    1)
+  expect_equal(
+    set_number_value(control, 1, 2),
+    1)
+  expect_null(
+    set_number_value(control, NA, NA))
 })
