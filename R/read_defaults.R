@@ -1,7 +1,7 @@
 read_hardcoded_defaults <- function(iso3, controls) {
   data <- read_default_options()
   if (!(iso3 %in% data$iso3)) {
-    stop(t_("FAILED_DEFAULT_OPTIONS_ISO3", list(iso3 = iso3)))
+    iso3 <- "fallback"
   }
   data <- data[data$iso3 == iso3, ]
   data$iso3 <- NULL

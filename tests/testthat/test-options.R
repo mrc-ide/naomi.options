@@ -14,11 +14,6 @@ test_that("get_controls_json returns useful error if type unknown", {
                "Failed to get options for type 'test'")
 })
 
-test_that("get_controls_json returns useful error if country unknown", {
-  expect_error(get_controls_json("calibration", "123", list(), list()),
-               "Failed to get default options for iso3 '123'")
-})
-
 test_that("get_controls_json returns useful error when options are missing", {
   expect_error(get_controls_json("model", "MWI", list(), list()),
                paste0("Failed to find any valid options for control ",
@@ -202,5 +197,26 @@ describe("model options can exclude ANC and include ART options", {
 
   it("includes ART options", {
     expect_true(!is.null(get_control(out, "include_art_t1")))
+  })
+})
+
+
+describe("when getting controls for unknown country", {
+  mwi_options <- build_test_options("MWI", "model", NULL)
+  json <- get_controls_json("model", "UNK", mwi_options, NULL)
+  out <- jsonlite::fromJSON(json, simplifyVector = FALSE)
+
+  it("returns data", {
+    expect_true(length(out) > 0)
+  })
+
+  it("has fallback defaults for non country specific options", {
+    calendar_quarter_t2 <- get_control(out, "calendar_quarter_t2")
+    expect_equal(calendar_quarter_t2$value, "CY2022Q3")
+  })
+
+  it("has no value for country specific options", {
+    area_scope <- get_control(out, "area_scope")
+    expect_equal(area_scope$value, "")
   })
 })
