@@ -138,7 +138,9 @@ set_values <- function(controls, defaults, fallback_values) {
 set_select_value <- function(control, default, fallback) {
   possible_ids <- lapply(control$options, "[[", "id")
   ## Valid if not set (e.g. empty string) or it is a possible ID
-  is_valid <- function(x) !is.na(x) && !is.null(x) && (x == "" || x %in% possible_ids)
+  is_valid <- function(x) {
+    !is.na(x) && !is.null(x) && (x == "" || x %in% possible_ids)
+  }
   if (is_valid(default)) {
     value <- default
   } else if (is_valid(fallback)) {
