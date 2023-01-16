@@ -1,5 +1,5 @@
 control <- function(name, type, required, label = NULL, help_text = NULL,
-                    options = NULL, min = NULL, max = NULL) {
+                    options = NULL, min = NULL, max = NULL, value = NULL) {
   assert_scalar_character(name)
   assert_scalar_character(type)
   assert_scalar_logical(required)
@@ -44,9 +44,22 @@ control <- function(name, type, required, label = NULL, help_text = NULL,
   control$options <- options
   control$min <- min
   control$max <- max
+  control$value <- value
+  class(control) <- "naomi_control"
   control
 }
 
+is_control <- function(obj) {
+  inherits(obj, "naomi_control")
+}
+
+as_control <- function(obj) {
+  if (!is_control(obj)) {
+    obj <- control(obj$name, obj$type, obj$required, obj$label, obj$help_text,
+                   obj$options, obj$min, obj$max, obj$value)
+  }
+  obj
+}
 
 get_calibration_options <- function() {
   list(

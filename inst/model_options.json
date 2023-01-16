@@ -4,6 +4,7 @@
       "label": "t_(OPTIONS_GENERAL_LABEL)",
       "description": "t_(OPTIONS_GENERAL_DESCRIPTION)",
       "controlGroups": [
+        "<~additional_control_groups~>",
         {
           "label": "t_(OPTIONS_GENERAL_AREA_SCOPE_LABEL)",
           "controls": [
