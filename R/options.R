@@ -81,12 +81,17 @@ build_model_template <- function(include_art, include_anc,
                                  additional_control_groups = NULL) {
   template <- read_template("model_options.json")
   if (!is.null(additional_control_groups)) {
-    additional_control_groups <- list(
-      label = additional_control_groups$label,
-      controls = lapply(additional_control_groups$controls, as_control)
-    )
-    additional_control_groups <- to_json(
-      recursive_scalar(additional_control_groups))
+    build_single_group <- function(group) {
+      control_group <- list(
+        label = group$label,
+        controls = lapply(group$controls, as_control)
+      )
+      to_json(recursive_scalar(control_group))
+    }
+    additional_control_groups <- lapply(additional_control_groups,
+                                        build_single_group)
+    additional_control_groups <- paste(additional_control_groups,
+                                       collapse = ",")
     if (nzchar(additional_control_groups)) {
       additional_control_groups <- paste0(additional_control_groups, ",")
     }
