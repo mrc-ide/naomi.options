@@ -45,7 +45,7 @@ control <- function(name, type, required, label = NULL, help_text = NULL,
   control$min <- min
   control$max <- max
   control$value <- value
-  class(control) <- "naomi_control"
+  class(control) <- "control"
   control
 }
 
