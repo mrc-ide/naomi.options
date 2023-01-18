@@ -1,8 +1,9 @@
 test_that("control must be well formed", {
   expect_equal(control("name", "type", TRUE),
-               list(name = "name",
+               structure(list(name = "name",
                     type = "type",
-                    required = TRUE))
+                    required = TRUE),
+               class = "control"))
   expect_error(control(1, "type", TRUE),
                "'name' must be character")
   expect_error(control("name", 1, TRUE),
@@ -32,7 +33,7 @@ test_that("control must be well formed", {
                          list(id = "1", label = "one"),
                          list(id = "2", label = "two")
                        )),
-               list(name = "name",
+               structure(list(name = "name",
                     type = "type",
                     required = TRUE,
                     label = "label",
@@ -40,17 +41,19 @@ test_that("control must be well formed", {
                     options = list(
                       list(id = "1", label = "one"),
                       list(id = "2", label = "two")
-                    )))
+                    )),
+               class = "control"))
   expect_equal(control("name", "type", TRUE,
                        label = "label",
                        help_text = "help text",
                        min = 1,
                        max = 10),
-               list(name = "name",
+               structure(list(name = "name",
                     type = "type",
                     required = TRUE,
                     label = "label",
                     helpText = "help text",
                     min = 1,
-                    max = 10))
+                    max = 10),
+               class = "control"))
 })

@@ -26,7 +26,10 @@
 #' hardcoded defaults are invalid.
 #' @param config Additional configuration options for returned JSON. If
 #' type is 'model' can set boolean 'include_art' and 'include_anc' to
-#' include options for ART and ANC controls. No affect for 'calibration' type.
+#' include options for ART and ANC controls. You can also pass
+#' `additional_control_groups` which will be appended to the top of the controls
+#' JSON. `additional_control_groups` must be a list representing a valid
+#' control group object. No affect for 'calibration' type.
 #'
 #' @return The complete controls JSON
 #' @export
@@ -50,7 +53,8 @@ build_model_controls <- function(iso3, options, fallback_values, config) {
     include_anc <- FALSE
   }
 
-  template <- build_model_template(include_art, include_anc)
+  template <- build_model_template(include_art, include_anc,
+                                   config$additional_control_groups)
 
   controls <- get_model_controls(include_art, include_anc)
   controls <- set_options(controls, options)
@@ -73,16 +77,36 @@ build_calibration_controls <- function(iso3, options, fallback_values) {
   build_json(template, controls)
 }
 
-build_model_template <- function(include_art, include_anc) {
+build_model_template <- function(include_art, include_anc,
+                                 additional_control_groups = NULL) {
   template <- read_template("model_options.json")
-  additional <- list()
+  if (!is.null(additional_control_groups)) {
+    build_single_group <- function(group) {
+      control_group <- list(
+        label = group$label,
+        controls = lapply(group$controls, as_control)
+      )
+      to_json(recursive_scalar(control_group))
+    }
+    additional_control_groups <- lapply(additional_control_groups,
+                                        build_single_group)
+    additional_control_groups <- paste(additional_control_groups,
+                                       collapse = ",")
+    if (nzchar(additional_control_groups)) {
+      additional_control_groups <- paste0(additional_control_groups, ",")
+    }
+  } else {
+    additional_control_groups <- ""
+  }
+
+  optional_controls <- list()
   if (include_anc) {
-    additional <- c(additional, read_template("anc_options.json"))
+    optional_controls <- c(optional_controls, read_template("anc_options.json"))
   }
   if (include_art) {
-    additional <- c(additional, read_template("art_options.json"))
+    optional_controls <- c(optional_controls, read_template("art_options.json"))
   }
-  optional_controls <- paste(additional, collapse = ",")
+  optional_controls <- paste(optional_controls, collapse = ",")
   if (nzchar(optional_controls)) {
     optional_controls <- paste0(optional_controls, ",")
   }

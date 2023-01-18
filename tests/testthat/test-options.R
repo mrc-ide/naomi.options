@@ -324,3 +324,63 @@ test_that("setting number values works", {
   expect_null(
     set_number_value(control, NA, NA))
 })
+
+test_that("get_controls_json can include additional options for model", {
+  mwi_values <- list(
+    area_scope = "test"
+  )
+  mwi_options <- build_test_options("MWI", "model", mwi_values)
+  mock_model_control_group <- list(
+    list(
+      label = "Trigger mock model error",
+      controls = list(
+        list(
+          name = "mock_model_trigger_error",
+          type = "select",
+          help_text = "Set TRUE to force the model fit to error",
+          required = TRUE,
+          options = list(list(id = "true", label = "Yes"),
+                         list(id = "false", label = "No")),
+          value = "false"
+        )
+      )
+    ),
+    list(
+      label = "Additional number control",
+      controls = list(
+        list(
+          name = "number_control_1",
+          type = "number",
+          help_text = "Number control help",
+          required = FALSE,
+          value = 2
+        )
+      )
+    )
+  )
+  json <- get_controls_json(
+    "model", "MWI", mwi_options, mwi_values,
+    list(include_art = TRUE, include_anc = TRUE,
+         additional_control_groups = mock_model_control_group))
+  out <- jsonlite::fromJSON(json, simplifyVector = FALSE)
+
+  control <- get_control(out, "mock_model_trigger_error")
+  expect_equal(control, list(
+    name = "mock_model_trigger_error",
+    type = "select",
+    required = TRUE,
+    helpText = "Set TRUE to force the model fit to error",
+    options = list(list(id = "true", label = "Yes"),
+                   list(id = "false", label = "No")),
+    value = "false"
+  ))
+
+  control <- get_control(out, "number_control_1")
+  expect_equal(control, list(
+    name = "number_control_1",
+    type = "number",
+    required = FALSE,
+    helpText = "Number control help",
+    value = 2
+  ))
+})
