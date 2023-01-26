@@ -215,7 +215,7 @@ describe("when getting controls for unknown country", {
 
   it("has fallback defaults for non country specific options", {
     calendar_quarter_t2 <- get_control(out, "calendar_quarter_t2")
-    expect_equal(calendar_quarter_t2$value, "CY2022Q3")
+    expect_equal(calendar_quarter_t2$value, "CY2022Q4")
   })
 
   it("has no value for country specific options", {
