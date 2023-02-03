@@ -108,7 +108,7 @@
   "OPTIONS_ART_TIME_VARYING_ART_ATTEND_HELP": "Permettre à la probabilité de demander un traitement dans les districts voisins de changer avec le temps",
   "CALIBRATION_LABEL_FAILED": "Impossible de trouver une option de calibration avec le nom {{option_name}} et l'id {{value}}",
   "OPTIONS_ADVANCED_PSNU_LEVEL_LABEL": "Niveau de PEPFAR PSNU",
-  "OPTIONS_ADVANCED_PEPFAR_PROJECTION_CALENNDAR_QUARTERS_LABEL" = "Projections annuelles de la COP du PEPFAR",
-  "COP_Y1_END_LABEL" = "COP Année 1 Fin",
-  "COP_Y2_END_LABEL" = "COP Année 2 Fin"
+  "OPTIONS_ADVANCED_PEPFAR_PROJECTION_CALENNDAR_QUARTERS_LABEL": "Projections annuelles de la COP du PEPFAR",
+  "COP_Y1_END_LABEL": "COP Année 1 Fin",
+  "COP_Y2_END_LABEL": "COP Année 2 Fin"
 }
