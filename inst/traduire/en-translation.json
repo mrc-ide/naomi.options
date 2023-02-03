@@ -106,5 +106,9 @@
   "OPTIONS_ADVANCED_DEFF_PREVALENCE_LABEL": "Survey design effect - HIV prevalence",
   "OPTIONS_ADVANCED_DEFF_ART_COVERAGE_LABEL": "Survey design effect - ART coverage",
   "OPTIONS_ADVANCED_DEFF_PROPORTION_RECENT_LABEL": "Survey design effect - Proportion recently infected",
-  "CALIBRATION_LABEL_FAILED": "Failed to find calibration option label with name '{{control_name}}' and id '{{value}}'."
+  "CALIBRATION_LABEL_FAILED": "Failed to find calibration option label with name '{{control_name}}' and id '{{value}}'.",
+  "OPTIONS_ADVANCED_PSNU_LEVEL_LABEL": "PEPFAR PSNU Level",
+  "OPTIONS_ADVANCED_PEPFAR_PROJECTION_CALENNDAR_QUARTERS_LABEL" = "PEPFAR COP Year Projections",
+  "COP_Y1_END_LABEL" = "COP Year 1 End",
+  "COP_Y2_END_LABEL" = "COP Year 2 End"
 }

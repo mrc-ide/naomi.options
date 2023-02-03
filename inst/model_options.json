@@ -166,6 +166,19 @@
             "<+use_kish_recent+>",
             "<+deff_recent+>"
           ]
+        },
+        {
+          "label": "t_(OPTIONS_ADVANCED_PEPFAR_PROJECTION_CALENNDAR_QUARTERS_LABEL)",
+          "controls": [
+            "<+calendar_quarter_t4+>",
+            "<+calendar_quarter_t5+>"	      
+          ]
+        },	  
+        {
+          "label": "t_(OPTIONS_ADVANCED_PSNU_LEVEL_LABEL)",
+          "controls": [
+            "<+psnu_level+>"
+          ]
         }
       ]
     }

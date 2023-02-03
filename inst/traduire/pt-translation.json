@@ -106,5 +106,9 @@
   "OPTIONS_T2_HELP": "Ano para gerar estimativas para",
   "OPTIONS_ART_NEIGHBOURING_DISTRICT_HELP": "Proporção modelo de residentes em TARV que procuram tratamento em distritos vizinhos",
   "OPTIONS_ART_TIME_VARYING_ART_ATTEND_HELP": "Permitir que as probabilidades de procurar tratamento no distrito vizinho mudem ao longo do tempo.",
-  "CALIBRATION_LABEL_FAILED": "Falha em encontrar a opção de calibração com nome {{option_name}} e id {{value}}"
+  "CALIBRATION_LABEL_FAILED": "Falha em encontrar a opção de calibração com nome {{option_name}} e id {{value}}",
+  "OPTIONS_ADVANCED_PSNU_LEVEL_LABEL": "Nível de PEPFAR PSNU",
+  "OPTIONS_ADVANCED_PEPFAR_PROJECTION_CALENNDAR_QUARTERS_LABEL" = "Projeções Ano COP PEPFAR",
+  "COP_Y1_END_LABEL" = "Fim do Ano 1 da COP",
+  "COP_Y2_END_LABEL" = "Fim do Ano 2 da COP"
 }
