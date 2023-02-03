@@ -455,8 +455,7 @@ get_model_controls <- function(include_art, include_anc) {
     psnu_level = control(
       name = "psnu_level",
       type = "select",
-      required = FALSE,
-      options = get_psnu_level_options()
+      required = FALSE
     )
   )
 
