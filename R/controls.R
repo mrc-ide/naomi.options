@@ -175,6 +175,105 @@ get_model_controls <- function(include_art, include_anc) {
     )
   )
 
+  projection_quarter_options <- list(
+    list(
+      id = "CY2020Q1",
+      label = paste(t_("MONTH_MARCH"), "2020")
+    ),
+    list(
+      id = "CY2020Q2",
+      label = paste(t_("MONTH_JUNE"), "2020")
+    ),
+    list(
+      id = "CY2020Q3",
+      label = paste(t_("MONTH_SEPTEMBER"), "2020")
+    ),
+    list(
+      id = "CY2020Q4",
+      label = paste(t_("MONTH_DECEMBER"), "2020")
+    ),
+    list(
+      id = "CY2021Q1",
+      label = paste(t_("MONTH_MARCH"), "2021")
+    ),
+    list(
+      id = "CY2021Q2",
+      label = paste(t_("MONTH_JUNE"), "2021")
+    ),
+    list(
+      id = "CY2021Q3",
+      label = paste(t_("MONTH_SEPTEMBER"), "2021")
+    ),
+    list(
+      id = "CY2021Q4",
+      label = paste(t_("MONTH_DECEMBER"), "2021")
+    ),
+    list(
+      id = "CY2022Q1",
+      label = paste(t_("MONTH_MARCH"), "2022")
+    ),
+    list(
+      id = "CY2022Q2",
+      label = paste(t_("MONTH_JUNE"), "2022")
+    ),
+    list(
+      id = "CY2022Q3",
+      label = paste(t_("MONTH_SEPTEMBER"), "2022")
+    ),
+    list(
+      id = "CY2022Q4",
+      label = paste(t_("MONTH_DECEMBER"), "2022")
+    ),
+    list(
+      id = "CY2023Q1",
+      label = paste(t_("MONTH_MARCH"), "2023")
+    ),
+    list(
+      id = "CY2023Q2",
+      label = paste(t_("MONTH_JUNE"), "2023")
+    ),
+    list(
+      id = "CY2023Q3",
+      label = paste(t_("MONTH_SEPTEMBER"), "2023")
+    ),
+    list(
+      id = "CY2023Q4",
+      label = paste(t_("MONTH_DECEMBER"), "2023")
+    ),
+    list(
+      id = "CY2024Q1",
+      label = paste(t_("MONTH_MARCH"), "2024")
+    ),
+    list(
+      id = "CY2024Q2",
+      label = paste(t_("MONTH_JUNE"), "2024")
+    ),
+    list(
+      id = "CY2024Q3",
+      label = paste(t_("MONTH_SEPTEMBER"), "2024")
+    ),
+    list(
+      id = "CY2024Q4",
+      label = paste(t_("MONTH_DECEMBER"), "2024")
+    ),
+        list(
+      id = "CY2025Q1",
+      label = paste(t_("MONTH_MARCH"), "2025")
+    ),
+    list(
+      id = "CY2025Q2",
+      label = paste(t_("MONTH_JUNE"), "2025")
+    ),
+    list(
+      id = "CY2025Q3",
+      label = paste(t_("MONTH_SEPTEMBER"), "2025")
+    ),
+    list(
+      id = "CY2025Q4",
+      label = paste(t_("MONTH_DECEMBER"), "2025")
+    )
+  )
+
   controls <- list(
     area_scope = control(
       name = "area_scope",
@@ -201,72 +300,21 @@ get_model_controls <- function(include_art, include_anc) {
       type = "select",
       required = TRUE,
       help_text = "OPTIONS_OUTPUT_PROJECTION_QUARTER_HELP",
-      options = list(
-        list(
-          id = "CY2020Q1",
-          label = paste(t_("MONTH_MARCH"), "2020")
-        ),
-        list(
-          id = "CY2020Q2",
-          label = paste(t_("MONTH_JUNE"), "2020")
-        ),
-        list(
-          id = "CY2020Q3",
-          label = paste(t_("MONTH_SEPTEMBER"), "2020")
-        ),
-        list(
-          id = "CY2020Q4",
-          label = paste(t_("MONTH_DECEMBER"), "2020")
-        ),
-        list(
-          id = "CY2021Q1",
-          label = paste(t_("MONTH_MARCH"), "2021")
-        ),
-        list(
-          id = "CY2021Q2",
-          label = paste(t_("MONTH_JUNE"), "2021")
-        ),
-        list(
-          id = "CY2021Q3",
-          label = paste(t_("MONTH_SEPTEMBER"), "2021")
-        ),
-        list(
-          id = "CY2021Q4",
-          label = paste(t_("MONTH_DECEMBER"), "2021")
-        ),
-        list(
-          id = "CY2022Q1",
-          label = paste(t_("MONTH_MARCH"), "2022")
-        ),
-        list(
-          id = "CY2022Q2",
-          label = paste(t_("MONTH_JUNE"), "2022")
-        ),
-        list(
-          id = "CY2022Q3",
-          label = paste(t_("MONTH_SEPTEMBER"), "2022")
-        ),
-        list(
-          id = "CY2022Q4",
-          label = paste(t_("MONTH_DECEMBER"), "2022")
-        ),
-        list(
-          id = "CY2023Q1",
-          label = paste(t_("MONTH_MARCH"), "2023")
-        ),
-        list(
-          id = "CY2023Q2",
-          label = paste(t_("MONTH_JUNE"), "2023")
-        ),
-        list(
-          id = "CY2023Q3",
-          label = paste(t_("MONTH_SEPTEMBER"), "2023")
-        ),
-        list(
-          id = "CY2023Q4",
-          label = paste(t_("MONTH_DECEMBER"), "2023")
-        )
-      )
+      options = projection_quarter_options
+    ),
+    calendar_quarter_t4 = control(
+      name = "calendar_quarter_t4",
+      label = "COP_Y1_END_LABEL",
+      type = "select",
+      required = TRUE,
+      options = projection_quarter_options
+    ),
+    calendar_quarter_t5 = control(
+      name = "calendar_quarter_t5",
+      label = "COP_Y2_END_LABEL",
+      type = "select",
+      required = TRUE,
+      options = projection_quarter_options
     ),
     survey_prevalence = control(
       name = "survey_prevalence",
@@ -403,6 +451,11 @@ get_model_controls <- function(include_art, include_anc) {
       type = "number",
       required = TRUE,
       help_text = "OPTIONS_ADVANCED_DEFF_PROPORTION_RECENT_HELP"
+    ),
+    psnu_level = control(
+      name = "psnu_level",
+      type = "select",
+      required = FALSE
     )
   )
 
