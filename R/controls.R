@@ -311,11 +311,11 @@ get_model_controls <- function(include_art, include_anc) {
     ),
     calendar_quarter_t5 = control(
       name = "calendar_quarter_t5",
-      label = "COP_Y2_END_LABEL",      
+      label = "COP_Y2_END_LABEL",
       type = "select",
       required = TRUE,
       options = projection_quarter_options
-    ),    
+    ),
     survey_prevalence = control(
       name = "survey_prevalence",
       type = "multiselect",
