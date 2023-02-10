@@ -1,3 +1,9 @@
+# naomi.options 1.0.4
+
+* UGA: 
+  - `alpha_xst_term` to TRUE.
+  - `spectrum_plhiv_calibration_strat` to `sex_age_coarse` aligned to other calibrations.
+
 # naomi.options 1.0.3
 
 * Added a `NEWS.md` file to track changes to the package.
