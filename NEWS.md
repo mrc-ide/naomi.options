@@ -1,6 +1,6 @@
 # naomi.options 1.0.5
 
-* Add helper function for returning translated labels
+* Add `translate_labels` helper function for returning translated labels.
 
 # naomi.options 1.0.4
 
