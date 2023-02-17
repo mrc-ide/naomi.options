@@ -28,3 +28,18 @@ test_that("get_calibration_option_labels throws error if cannot be mapped", {
     get_calibration_option_labels(list(test = "value")),
     "Failed to find calibration option label with name 'test' and id 'value'.")
 })
+
+test_that("can get translated labels", {
+  labels <- c("OPTIONS_GENERAL_AREA_SCOPE_LABEL",
+              "OPTIONS_GENERAL_AREA_LEVEL_LABEL")
+  expect_equal(translate_labels(labels), c("Area scope", "Area level"))
+
+  labels <- c("OPTIONS_GENERAL_AREA_SCOPE_LABEL",
+              "OPTIONS_GENERAL_AREA_LEVEL_LABEL")
+  expect_equal(translate_labels(labels, lang = "fr"),
+               c("Périmètre de zone", "Niveau de la zone"))
+
+  labels <- c("OPTIONS_GENERAL_AREA_SCOPE_LABEL",
+              "OPTIONS_GENERAL_AREA_LEVEL_LABEL")
+  expect_equal(translate_labels(labels), c("Area scope", "Area level"))
+})

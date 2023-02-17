@@ -2,4 +2,5 @@
 
 export(get_calibration_option_labels)
 export(get_controls_json)
+export(translate_labels)
 importFrom(traduire,t_)
