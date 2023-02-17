@@ -1,3 +1,7 @@
+# naomi.options 1.0.5
+
+* Change default calibration `spectrum_plhiv_calibration_strat` to `sex_age_coarse` for all countries, aligned to other calibrations.
+
 # naomi.options 1.0.4
 
 * UGA: 
