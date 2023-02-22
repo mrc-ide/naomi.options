@@ -32,7 +32,10 @@ hardcoded defaults are invalid.}
 
 \item{config}{Additional configuration options for returned JSON. If
 type is 'model' can set boolean 'include_art' and 'include_anc' to
-include options for ART and ANC controls. No affect for 'calibration' type.}
+include options for ART and ANC controls. You can also pass
+\code{additional_control_groups} which will be appended to the top of the controls
+JSON. \code{additional_control_groups} must be a list representing a valid
+control group object. No affect for 'calibration' type.}
 }
 \value{
 The complete controls JSON

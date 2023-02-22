@@ -22,3 +22,18 @@ get_calibration_option_labels <- function(options) {
   }
   as.list(vapply(names(options), map_option, character(1), USE.NAMES = TRUE))
 }
+
+#' Take a vector of labels and translate
+#'
+#' @param labels Vector of labels, the translation keys
+#' @param lang Language to return output in
+#'
+#' @return Translated labels for current language
+#' @export
+translate_labels <- function(labels, lang = traduire::translator()$language()) {
+  translated <- c()
+  for (label in labels) {
+    translated <- c(translated, t_(label, language = lang))
+  }
+  translated
+}
