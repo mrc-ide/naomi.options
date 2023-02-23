@@ -2,8 +2,8 @@
 #'
 #' This gets the JSON for the model or calibration options for a particular
 #' country. The control info will be filled in in this order of precedence
-#' 1. hardcoded default values from `default_options.csv`
-#' 2. `fallback_values` arg (if set)
+#' 1. `override_values` arg (if set)
+#' 2. hardcoded default values from `default_options.csv`
 #'
 #' @param type The type of options to get, model or calibration
 #' @param iso3 The iso3 of the country to get options for
@@ -22,8 +22,8 @@
 #'   ),
 #'   ...
 #' )
-#' @param fallback_values A list of names values to use as fallbacks if
-#' hardcoded defaults are invalid.
+#' @param override_values A list of named values to use as default values. This
+#' will take precedent over a hardcoded value if both are set.
 #' @param config Additional configuration options for returned JSON. If
 #' type is 'model' can set boolean 'include_art' and 'include_anc' to
 #' include options for ART and ANC controls. You can also pass
@@ -33,17 +33,17 @@
 #'
 #' @return The complete controls JSON
 #' @export
-get_controls_json <- function(type, iso3, options, fallback_values,
+get_controls_json <- function(type, iso3, options, override_values,
                               config = list()) {
   ## TODO: Assert inputs are sensible
   switch(type,
-         "model" = build_model_controls(iso3, options, fallback_values, config),
+         "model" = build_model_controls(iso3, options, override_values, config),
          "calibration" = build_calibration_controls(iso3, options,
-                                                    fallback_values),
+                                                    override_values),
          stop(t_("OPTIONS_UNKNOWN_TYPE", list(type = type))))
 }
 
-build_model_controls <- function(iso3, options, fallback_values, config) {
+build_model_controls <- function(iso3, options, override_values, config) {
   include_art <- config$include_art
   if (!isTRUE(config$include_art)) {
     include_art <- FALSE
@@ -60,19 +60,19 @@ build_model_controls <- function(iso3, options, fallback_values, config) {
   controls <- set_options(controls, options)
 
   defaults <- read_hardcoded_defaults(iso3, controls)
-  controls <- set_values(controls, defaults, fallback_values)
+  controls <- set_values(controls, defaults, override_values)
 
   build_json(template, controls)
 }
 
-build_calibration_controls <- function(iso3, options, fallback_values) {
+build_calibration_controls <- function(iso3, options, override_values) {
   template <- read_template("calibration_options.json")
 
   controls <- get_calibration_controls()
   controls <- set_options(controls, options)
 
   defaults <- read_hardcoded_defaults(iso3, controls)
-  controls <- set_values(controls, defaults, fallback_values)
+  controls <- set_values(controls, defaults, override_values)
 
   build_json(template, controls)
 }
@@ -145,7 +145,7 @@ set_options <- function(controls, options) {
   controls
 }
 
-set_values <- function(controls, defaults, fallback_values) {
+set_values <- function(controls, defaults, override_values) {
   for (control_id in names(controls)) {
     get_value <- switch(controls[[control_id]]$type,
                         "select" = set_select_value,
@@ -154,28 +154,28 @@ set_values <- function(controls, defaults, fallback_values) {
                         stop("Unknown control type"))
     controls[[control_id]]$value <- get_value(controls[[control_id]],
                                               defaults[[control_id]],
-                                              fallback_values[[control_id]])
+                                              override_values[[control_id]])
   }
   recursive_scalar(controls)
 }
 
-set_select_value <- function(control, default, fallback) {
+set_select_value <- function(control, default, override) {
   possible_ids <- lapply(control$options, "[[", "id")
   ## Valid if not set (e.g. empty string) or it is a possible ID
   is_valid <- function(x) {
     !is.na(x) && !is.null(x) && (x == "" || x %in% possible_ids)
   }
-  if (is_valid(default)) {
+  if (is_valid(override[[1]])) {
+    value <- override[[1]]
+  } else if (is_valid(default)) {
     value <- default
-  } else if (is_valid(fallback[[1]])) {
-    value <- fallback[[1]]
   } else {
     value <- NULL
   }
   value
 }
 
-set_multiselect_value <- function(control, default, fallback) {
+set_multiselect_value <- function(control, default, override) {
   possible_ids <- lapply(control$options, "[[", "id")
   ## Valid if empty string or each item is in list of possible IDs
   is_single_valid <- function(y) {
@@ -185,23 +185,23 @@ set_multiselect_value <- function(control, default, fallback) {
     !is.null(x) && (
       !any(nzchar(x)) || all(vapply(x, is_single_valid, logical(1))))
   }
-  if (is_valid(default)) {
+  if (is_valid(override)) {
+    value <- override
+  } else if (is_valid(default)) {
     value <- default
-  } else if (is_valid(fallback)) {
-    value <- fallback
   } else {
     value <- NULL
   }
   value
 }
 
-set_number_value <- function(control, default, fallback) {
+set_number_value <- function(control, default, override) {
   ## For number type, valid as long as not NULL or NA
   is_valid <- function(x) !is.null(x) && !is.na(x)
-  if (is_valid(default)) {
+  if (is_valid(override[[1]])) {
+    value <- override[[1]]
+  } else if (is_valid(default)) {
     value <- default
-  } else if (is_valid(fallback[[1]])) {
-    value <- fallback[[1]]
   } else {
     value <- NULL
   }

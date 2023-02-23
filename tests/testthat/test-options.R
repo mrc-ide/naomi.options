@@ -38,10 +38,11 @@ describe("can get model options JSON", {
     expect_equal(control$options, mwi_options[[control$name]])
   })
 
-  it("uses values from csv (not from fallbacks)", {
+  it("uses values from overrides not csv", {
+    csv_values <- read_hardcoded_defaults("MWI", list(area_scope = list()))
     expect_equal(control$name, "area_scope")
-    expect_true(!is.null(mwi_values[["area_scope"]]))
-    expect_true(control$value != mwi_values[["area_scope"]])
+    expect_equal(control$value, mwi_values[["area_scope"]])
+    expect_true(control$value != csv_values[[1]])
   })
 
   it("includes ANC options", {
@@ -53,10 +54,9 @@ describe("can get model options JSON", {
   })
 })
 
-test_that("empty default value is returned even when fallback provided", {
+test_that("empty default value is returned only when no override provided", {
   ago_values <- list(
-    survey_prevalence = "AGO2015DHS",
-    survey_art_coverage = "AGO2015DHS"
+    survey_prevalence = "AGO2015DHS"
   )
   ago_options <- build_test_options("AGO", "model", ago_values)
   json <- get_controls_json("model", "AGO", ago_options, ago_values,
@@ -67,39 +67,29 @@ test_that("empty default value is returned even when fallback provided", {
   expect_equal(control$value, "")
 })
 
-test_that("fallback values used if defaults are invalid", {
+test_that("default values used if overrides are invalid", {
   mwi_values <- list(
-    area_level = "1",
-    survey_prevalence = "test"
+    area_level = "invalid",
+    survey_prevalence = "invalid"
   )
   options <- build_test_options("MWI", "model", mwi_values)
-  options$area_level <- list(
-    list(
-      id = "1",
-      label = "1"
-    )
-  )
-  options$survey_prevalence <- list(
-    list(
-      id = "test",
-      label = "test"
-    )
-  )
+  options$area_level <- options$area_level[1]
+  options$survey_prevalence <- options$survey_prevalence[1]
 
   json <- get_controls_json("model", "MWI", options, mwi_values,
                             list(include_art = TRUE, include_anc = TRUE))
   out <- jsonlite::fromJSON(json, simplifyVector = FALSE)
 
-  ## select value comes from fallback
+  ## select value comes from defaults
   area_level <- get_control(out, "area_level")
-  expect_equal(area_level$value, "1")
+  expect_true(area_level$value != "invalid")
 
-  ## multiselect value comes from fallback
+  ## multiselect value comes from defaults
   survey_prevalence <- get_control(out, "survey_prevalence")
-  expect_equal(survey_prevalence$value, "test")
+  expect_true(survey_prevalence$value != "invalid")
 })
 
-test_that("fallback to no value if defaults and fallback values are invalid", {
+test_that("fallback to no value if defaults and override values are invalid", {
   mwi_values <- list(
     area_level = "test",
     survey_prevalence = "test"
@@ -213,7 +203,7 @@ describe("when getting controls for unknown country", {
     expect_true(length(out) > 0)
   })
 
-  it("has fallback defaults for non country specific options", {
+  it("has override defaults for non country specific options", {
     calendar_quarter_t2 <- get_control(out, "calendar_quarter_t2")
     expect_equal(calendar_quarter_t2$value, "CY2022Q4")
   })
@@ -241,7 +231,7 @@ test_that("setting select values works", {
     )
   )
   expect_equal(
-    set_select_value(control, "", "op1"),
+    set_select_value(control, "op1", ""),
     "")
   expect_equal(
     set_select_value(control, NA, "op1"),
@@ -254,7 +244,7 @@ test_that("setting select values works", {
     "op1")
   expect_equal(
     set_select_value(control, "op1", "op2"),
-    "op1")
+    "op2")
   expect_null(
     set_select_value(control, "another", "123"))
   expect_equal(
@@ -279,7 +269,7 @@ test_that("setting multiselect values works", {
     )
   )
   expect_equal(
-    set_multiselect_value(control, "", "op1"),
+    set_multiselect_value(control, "op1", ""),
     "")
   expect_equal(
     set_multiselect_value(control, NA, "op1"),
@@ -298,9 +288,9 @@ test_that("setting multiselect values works", {
     c("op1", "op2"))
   expect_equal(
     set_multiselect_value(control, "op1", "op2"),
-    "op1")
+    "op2")
   expect_equal(
-    set_multiselect_value(control, c("op1", "op2"), "op2"),
+    set_multiselect_value(control, "op1", c("op1", "op2")),
     c("op1", "op2"))
   expect_null(
     set_multiselect_value(control, "another", "123"))
@@ -313,14 +303,14 @@ test_that("setting number values works", {
     required = TRUE
   )
   expect_equal(
-    set_number_value(control, NA, 1),
+    set_number_value(control, 1, NA),
     1)
   expect_equal(
     set_number_value(control, NA, c(1, 2)),
     1)
   expect_equal(
     set_number_value(control, 1, 2),
-    1)
+    2)
   expect_null(
     set_number_value(control, NA, NA))
 })

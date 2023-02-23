@@ -1,3 +1,7 @@
+# naomi.options 1.1.0
+
+* Rename `fallback_values` arg to `override_values` in `get_controls_json` as any `override_values` now take precedence over hardcoded values from the defaults csv.
+
 # naomi.options 1.0.6
 
 * Add `translate_labels` helper function for returning translated labels.
