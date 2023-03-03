@@ -1,3 +1,7 @@
+# naomi.options 1.0.7
+
+* NAM: change defual psnu_level to 1.
+
 # naomi.options 1.0.6
 
 * Add `translate_labels` helper function for returning translated labels.
