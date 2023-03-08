@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">naomi.options</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.0</span>
       </span>
     </div>
 
@@ -83,15 +83,15 @@
 <ul>
 <li>control - the set of metadata describing one drop down or numeric entry in the options form, this includes info about the name, label, whether it is a required control, the options for the control, a default value etc. There are 3 types of controls, select (for a drop down with 1 value), multiselect (a dropdown with multiple values), numeric for a number</li>
 <li>options - the individual options for select and multiselect controls (i.e. the set of all possible values the control can take)</li>
-<li>fallback - a backup default value for a control which can be used if the hardcoded default in the defaults csv is invalid</li>
+<li>override - a default value for a control which will be used used for the control, even if there is a hardcoded default value</li>
 </ul>
 </div>
 <div class="section level2">
 <h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
 </h2>
 <p><img src="diagram/logic.png?raw=true"></p>
-<p>There are 2 possible sources for default values, in order of precedence * <code>default_options.csv</code> * <code>fallback_values</code> coming from the data</p>
-<p>When building the options from hintr the way this works is 1. hintr receives a request to return options with paths to files 1. hintr reads files and pulls out options and default values from the data 1. hintr calls naomi.options <code>get_controls_json</code> with the <code>iso3</code> the <code>options</code> from the data and <code>fallback_values</code> from the data. Note the <code>options</code> and <code>fallback_values</code> can be empty and indeed are for calibrate options 1. naomi.options reads the controls from <code>controls.R</code> for this type, and adds any <code>options</code> passed as an arg into this list for each <code>control</code> 1. naomi.options reads the default values from <code>default_options.csv</code> 1. For each control, naomi.options checks if csv value is valid and if it is sets this as the <code>value</code> for the control. If it is invalid it checks if there is a default in the <code>fallback_values</code> if not uses an empty default <code>value</code> 1. naomi.options takes the completed set of controls, serializes them to JSON and embeds them in the options json from <code>inst/model_options.json</code> or <code>inst/calibration_options.json</code> and returns to hintr 1. hintr returns json back as response</p>
+<p>There are 2 possible sources for default values, in order of precedence * <code>override_values</code> coming from the data * <code>default_options.csv</code></p>
+<p>When building the options from hintr the way this works is 1. hintr receives a request to return options with paths to files 1. hintr reads files and pulls out options and default values from the data 1. hintr calls naomi.options <code>get_controls_json</code> with the <code>iso3</code> the <code>options</code> from the data and <code>override_values</code> from the data. Note the <code>options</code> and <code>override_values</code> can be empty and indeed are for calibrate options 1. naomi.options reads the controls from <code>controls.R</code> for this type, and adds any <code>options</code> passed as an arg into this list for each <code>control</code> 1. naomi.options reads the default values from <code>default_options.csv</code> 1. For each control, naomi.options checks if an <code>override_value</code> exists and is valid. If it is sets this as the <code>value</code> for the control. If it is invalid it checks if there is a default in the <code>default_options,csv</code> whcih is valid. If not uses an empty default <code>value</code> 1. naomi.options takes the completed set of controls, serializes them to JSON and embeds them in the options json from <code>inst/model_options.json</code> or <code>inst/calibration_options.json</code> and returns to hintr 1. hintr returns json back as response</p>
 </div>
 <div class="section level2">
 <h2 id="change-the-default-value-of-a-control">Change the default value of a control<a class="anchor" aria-label="anchor" href="#change-the-default-value-of-a-control"></a>
