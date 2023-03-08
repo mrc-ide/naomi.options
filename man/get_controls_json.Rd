@@ -4,7 +4,7 @@
 \alias{get_controls_json}
 \title{Get the options JSON}
 \usage{
-get_controls_json(type, iso3, options, fallback_values, config = list())
+get_controls_json(type, iso3, options, override_values, config = list())
 }
 \arguments{
 \item{type}{The type of options to get, model or calibration}
@@ -27,8 +27,8 @@ label = "two"
 ...
 )}
 
-\item{fallback_values}{A list of names values to use as fallbacks if
-hardcoded defaults are invalid.}
+\item{override_values}{A list of named values to use as default values. This
+will take precedent over a hardcoded value if both are set.}
 
 \item{config}{Additional configuration options for returned JSON. If
 type is 'model' can set boolean 'include_art' and 'include_anc' to
@@ -44,7 +44,7 @@ The complete controls JSON
 This gets the JSON for the model or calibration options for a particular
 country. The control info will be filled in in this order of precedence
 \enumerate{
+\item \code{override_values} arg (if set)
 \item hardcoded default values from \code{default_options.csv}
-\item \code{fallback_values} arg (if set)
 }
 }
