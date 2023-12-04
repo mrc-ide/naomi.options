@@ -256,7 +256,7 @@ get_model_controls <- function(include_art, include_anc) {
       id = "CY2024Q4",
       label = paste(t_("MONTH_DECEMBER"), "2024")
     ),
-        list(
+    list(
       id = "CY2025Q1",
       label = paste(t_("MONTH_MARCH"), "2025")
     ),
@@ -271,6 +271,38 @@ get_model_controls <- function(include_art, include_anc) {
     list(
       id = "CY2025Q4",
       label = paste(t_("MONTH_DECEMBER"), "2025")
+    ),
+    list(
+      id = "CY2026Q1",
+      label = paste(t_("MONTH_MARCH"), "2026")
+    ),
+    list(
+      id = "CY2026Q2",
+      label = paste(t_("MONTH_JUNE"), "2026")
+    ),
+    list(
+      id = "CY2026Q3",
+      label = paste(t_("MONTH_SEPTEMBER"), "2026")
+    ),
+    list(
+      id = "CY2026Q4",
+      label = paste(t_("MONTH_DECEMBER"), "2026")
+    ),
+    list(
+      id = "CY2027Q1",
+      label = paste(t_("MONTH_MARCH"), "2027")
+    ),
+    list(
+      id = "CY2027Q2",
+      label = paste(t_("MONTH_JUNE"), "2027")
+    ),
+    list(
+      id = "CY2027Q3",
+      label = paste(t_("MONTH_SEPTEMBER"), "2027")
+    ),
+    list(
+      id = "CY2027Q4",
+      label = paste(t_("MONTH_DECEMBER"), "2027")
     )
   )
 
