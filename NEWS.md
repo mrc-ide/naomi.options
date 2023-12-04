@@ -1,3 +1,12 @@
+# naomi.options 1.2.0
+
+* Update defaults for 2024 HIV estimates
+  - Extends calendar quarter model options drop downs from `December 2025` to `December 2027`
+  - Updates T2, T3, T4, and T5 defaults all 1-year ahead
+  - Updates default 'current' ANC input year to 2023
+  - Updates TZA defaults to 2022 PHIA survey
+
+
 # naomi.options 1.1.0
 
 * Rename `fallback_values` arg to `override_values` in `get_controls_json` as any `override_values` now take precedence over hardcoded values from the defaults csv.
