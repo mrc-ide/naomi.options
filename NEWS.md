@@ -1,3 +1,10 @@
+# naomi.options 1.2.1
+
+* Update default calibration options:
+  - "national", except for three countries (Kenya, Zimbabwe, Ethiopia) to subnational.
+  - Change stratification to "sex_age_group"
+  
+  
 # naomi.options 1.2.0
 
 * Update defaults for 2024 HIV estimates

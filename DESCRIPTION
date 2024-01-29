@@ -1,6 +1,6 @@
 Package: naomi.options
 Title: Contains model and calibration options and helper functions for Naomi
-Version: 1.2.0
+Version: 1.2.1
 Authors@R: 
     person(given = "Robert", 
            family = "Ashton", 
