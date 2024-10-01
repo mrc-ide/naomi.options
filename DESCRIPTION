@@ -16,7 +16,7 @@ BugReports: https://github.com/mrc-ide/naomi.options/issues
 Additional_repositories: https://mrc-ide.r-universe.dev
 Imports:
     data.table,
-    glue,
+    glue (>= 1.8.0),
     jsonlite,
     traduire (>= 0.0.5),
 Suggests:
