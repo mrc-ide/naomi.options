@@ -1,3 +1,7 @@
+# naomi.options 1.3.0
+
+* Update default for 2024/2025 HIV estimates
+
 # naomi.options 1.2.1
 
 * Update default calibration options:
