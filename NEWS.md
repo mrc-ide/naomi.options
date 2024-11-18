@@ -1,6 +1,14 @@
 # naomi.options 1.3.0
 
 * Update default for 2024/2025 HIV estimates
+  - Calendar quaters T2 - T5 updated to 2024 - 2027
+  - ANC T2 options set to 2025
+    - include_art_t1: blank (force select)
+    - include_art_t2: TRUE
+    - artattend: TRUE
+    - artattend_t2: TRUE
+  - Calibration method set to logistic
+  - For CAF, CMR, STP, MWI and ZAF default options from prior year were used
 
 # naomi.options 1.2.1
 
