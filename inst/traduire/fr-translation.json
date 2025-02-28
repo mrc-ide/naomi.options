@@ -109,6 +109,8 @@
   "CALIBRATION_LABEL_FAILED": "Impossible de trouver une option de calibration avec le nom {{option_name}} et l'id {{value}}",
   "OPTIONS_ADVANCED_PSNU_LEVEL_LABEL": "Niveau de PEPFAR PSNU",
   "OPTIONS_ADVANCED_PEPFAR_PROJECTION_CALENNDAR_QUARTERS_LABEL": "Projections annuelles de la COP du PEPFAR",
+  "OPTIONS_ADVANCED_EXTRA_MEMORY_LABEL": "Exécuter le modèle sur un nœud avec un excès de mémoire",
+  "OPTIONS_ADVANCED_EXTRA_MEMORY_HELP": "Remplacer la configuration par défaut du pays et forcer ce modèle à s'adapter à un nœud de calcul avec la mémoire maximale disponible. N'utilisez cette option que si votre modèle a échoué en raison d'un manque de mémoire et informez-en un administrateur système.",
   "COP_Y1_END_LABEL": "COP Année 1 Fin",
   "COP_Y2_END_LABEL": "COP Année 2 Fin"
 }

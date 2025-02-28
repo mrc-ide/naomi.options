@@ -172,11 +172,17 @@
           "controls": [
             "<+calendar_quarter_t4+>"
           ]
-        },	  
+        },
         {
           "label": "t_(OPTIONS_ADVANCED_PSNU_LEVEL_LABEL)",
           "controls": [
             "<+psnu_level+>"
+          ]
+        },
+        {
+          "label": "t_(OPTIONS_ADVANCED_EXTRA_MEMORY_LABEL)",
+          "controls": [
+            "<+extra_memory+>"
           ]
         }
       ]

@@ -488,6 +488,13 @@ get_model_controls <- function(include_art, include_anc) {
       name = "psnu_level",
       type = "select",
       required = FALSE
+    ),
+    extra_memory = control(
+      name = "extra_memory",
+      type = "select",
+      required = FALSE,
+      help_text = "OPTIONS_ADVANCED_EXTRA_MEMORY_HELP",
+      options = yes_no_options
     )
   )
 
