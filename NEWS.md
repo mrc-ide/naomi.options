@@ -1,3 +1,7 @@
+# naomi.options 1.3.1
+
+* Remove `calendar_quarter_t5` option. Aligned to Naomi version 2.10.8.
+
 # naomi.options 1.3.0
 
 * Update default for 2024/2025 HIV estimates
