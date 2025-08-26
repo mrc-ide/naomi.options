@@ -109,6 +109,8 @@
   "CALIBRATION_LABEL_FAILED": "Failed to find calibration option label with name '{{control_name}}' and id '{{value}}'.",
   "OPTIONS_ADVANCED_PSNU_LEVEL_LABEL": "PEPFAR PSNU Level",
   "OPTIONS_ADVANCED_PEPFAR_PROJECTION_CALENNDAR_QUARTERS_LABEL": "PEPFAR COP Year Projections",
+  "OPTIONS_ADVANCED_EXTRA_MEMORY_LABEL": "Run model fit on node with excess memory",
+  "OPTIONS_ADVANCED_EXTRA_MEMORY_HELP": "Override the country configured default and force this model fit onto a compute node with the maximum available memory. Only use this if your model has failed due to running out of memory and let a system admin know.",
   "COP_Y1_END_LABEL": "COP Year 1 End",
   "COP_Y2_END_LABEL": "COP Year 2 End"
 }
