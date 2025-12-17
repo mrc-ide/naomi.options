@@ -1,3 +1,8 @@
+# naomi.options 1.4.0
+
+* Update to 2025/2026 HIV estimates default options
+* Updated survey_id, survey_mid_calendar_quarter, calendar_t1 and anc T1 options in line with new survey availability for ZMB, COD and AGO.
+
 # naomi.options 1.3.1
 
 * Remove `calendar_quarter_t5` option. Aligned to Naomi version 2.10.8.
