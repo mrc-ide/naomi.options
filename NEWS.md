@@ -1,3 +1,8 @@
+# naomi.options 1.4.1
+
+* Update default survey for CIV to `"CIV2024PHIA"`.
+
+
 # naomi.options 1.4.0
 
 * Update to 2025/2026 HIV estimates default options
